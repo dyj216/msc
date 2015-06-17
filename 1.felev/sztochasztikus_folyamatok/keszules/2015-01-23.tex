@@ -78,7 +78,8 @@ de, a paraméter az megváltozik: $10 \cdot 5/60 = 5/6$ lesz (10 volt kezdetben,
 \mbox{sztocha6.pdf} példája alapján, amit a honlapról 
 \url{http://www.sze.hu/~harmati/sztocha2.html} le lehet tölteni). 
 Így a képlet:
-\[P(X) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}e^{-\frac{5}{6}} \approx 0,5654\]
+\[P(X) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}
+e^{-\frac{5}{6}} \approx 0,5654\]
 
 \subsection*{b)}
 Hasonlóan itt is a paraméter megválasztása szerintem helytelen. A helyes 
@@ -89,7 +90,9 @@ Valóban diszjunktak az időtartamok, tehát a feltétel lényegtelen.
 P(X_{20/60} \geq 2) = 1 - \left( P(X_{20/60} = 0)+P(X_{20/60} = 1)\right)
 \]
 \[
-P(X_{20/60} \geq 2) = 1 - \frac{\left(\frac{10}{3}\right)^0}{0!}e^{-\frac{10}{3}} - \frac{\left(\frac{10}{3}\right)^1}{1!}e^{-\frac{10}{3}} \approx 0,8454
+P(X_{20/60} \geq 2) = 1 - \frac{\left(\frac{10}{3}\right)^0}{0!}e^
+{-\frac{10}{3}} - \frac{\left(\frac{10}{3}\right)^1}{1!}e^{-\frac{10}{3}} 
+\approx 0,8454
 \]
 
 \subsection*{c)}
@@ -97,17 +100,20 @@ Itt ugye az a nehézség, hogy nem diszjunktak az időpillanatok így nem
 hagyhatóak el a feltételek.
 \begin{equation*}
 \begin{split}
-P(X_{60/60} = 10 \mid X_{30/60} = 4) &= \frac{P(X_1 = 10 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} \\
+P(X_{60/60} = 10 \mid X_{30/60} = 4) &= \frac{P(X_1 = 10 \cap X_{1/2} = 4)}
+{P(X_{1/2} = 4)} \\
 &= \frac{P(X_1-X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)}
 \end{split}
 \end{equation*}
 A paraméter alakulása fél órára: $10 \cdot 30/60 = 5$
 \[
-\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{\frac{5^6}{6!}e^{-5} \cdot \frac{5^4}{4!} e^{-5}}{\frac{5^4}{4!} e^{-5}}
+\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{\frac{5^6}{6!}
+e^{-5} \cdot \frac{5^4}{4!} e^{-5}}{\frac{5^4}{4!} e^{-5}}
 \]
 Egyszerűsítve:
 \[
-\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{5^4}{4!} e^{-5} \approx 0,1462
+\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = 
+\frac{5^4}{4!} e^{-5} \approx 0,1462
 \]
 
 \end{document}                          % vége a dokumentumnak és a fájlnak
