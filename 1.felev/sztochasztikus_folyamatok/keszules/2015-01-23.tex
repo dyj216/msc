@@ -1,0 +1,113 @@
+\documentclass[a4paper,12pt]{article}   		% A4-es papír USLetter helyett (az a default)
+\usepackage[utf8]{inputenc}           	% Latin-2-es kódolású ez a forrás
+%\usepackage{t1enc}                      % a belső ábrázolás és a kimeneti font-kódolás % a T1 kódolás
+%\usepackage{uarial}				       % betűtipus beállítás
+\usepackage{indentfirst}                % az első bekezdés is behúzott legyen, ne csak a 2-tól
+%\usepackage{titlepic}					% kép a címoldalra
+%\usepackage{color}						% színes betűk
+%\usepackage{graphicx}					% a sokumentumba képeket lehet beszúrni
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref} % kilkkelhető lesz a PDF (és szépen formázott a hidelinks paranccsal) % 
+\usepackage{amsmath}
+\usepackage{hyperref}
+%\def\magyarOptions{defaults=hu-min}		% A magyar tartalomjegyzékhez kell, enélkül nem jó helyre kerűl a hívatkozás. Be kell még másolni a szerkesztett doumentum könyvtárba a legújabb "magyar.ldf" fájlt. 
+%\usepackage{fancyhdr} 					% élőfej formázás 
+\usepackage[magyar]{babel}				% nyelvi csomagok utolsó az alapértelmezett a magyar.ldf fájlt be kell másolni a sokumentum könyvtárba
+%\usepackage{t1enc}						% magyar ékezetes betűknél az elválasztás
+%\pagestyle{fancy}						% élőfej a lap tetején (fancy-ban az elsőlapra nem kerül)
+%\sloppy								% megakadályozza a jobra kilógást 8˙csúnya)
+
+\frenchspacing                          % a mondatköz ugyanakkora nagy, mint a szóköz
+\setlength{\parskip}{\smallskipamount}  % bekezdések közötti távolság beállítása %(gumi-méret: 3pt plus 1pt minus 1 pt)
+\setcounter{secnumdepth}{6}				% több szintű tartalom és tartalomjegyzék
+\setcounter{tocdepth}{6} 				% tartalomjegyzék mélysége
+
+\title{Sztochasztikus folyamatok 2015-01-23 vizsga}
+\author{Készítette: Endreffy Zsolt}
+        
+%\renewcommand{\thesection}{\Roman{section}}  %Római számozású szekciók 
+
+
+     
+\begin{document}                        % itt kezdődik a dokumentumunk
+\section*{1. feladat}
+\subsection*{a)}
+\[p = 0,49\]
+\[1-p = q = 0,51\]
+
+A tét mértéke: 100 Ft. A saját pénzünk 1000 Ft. Ebből $n_1 = 1000/100=10$ a 
+játékaink száma. Az ellenfél pénze: 500 Ft. Ebből $n_2 = 500/100=5$.
+$n_1 + n_2 = 15$.
+
+A nyerés valószínűsége:
+\[P(\text{nyerünk}) = \frac{1-\left(\frac{1-p}{p}\right)^{n_1}}
+{1-\left(\frac{1-p}{p}\right)^{n_1+n_2}} = 
+\frac{1-\left(\frac{0,51}{1,49}\right)^{10}}
+{1-\left(\frac{0,51}{0,49}\right)^{15}} \approx 0,4045 \]
+
+\[P(\text{vesztünk}) = 1 - P(\text{nyerünk}) = 1 - 0,4045 = 0,5955\]
+
+\subsection*{b)}
+1 kört inkább elvesztünk, mint megnyerünk ($p<q$), ellenfelünk pénze konstans
+($n_2 = 5$), így alkalmazhatjuk a következő határérték számítást:
+
+\[
+\begin{split}
+P(\text{nyerünk}) &= 
+\lim_{n_1 \to \infty} \frac{1-\left(\frac{1-p}{p}\right)^{n_1}}
+{1-\left(\frac{1-p}{p}\right)^{n_1+n_2}} =
+\lim_{n_1 \to \infty} \frac{1-\left(\frac{1-p}{p}\right)^{n_1}}
+{1-\left(\frac{1-p}{p}\right)^{n_1}\left(\frac{1-p}{p}\right)^{n_2}} =\\
+&= \lim_{n_1 \to \infty} \frac{\left(\frac{1-p}{p}\right)^{n_1}}
+{\left(\frac{1-p}{p}\right)^{n_1}} \cdot 
+\frac{\frac{1}{\left(\frac{1-p}{p}\right)^{n_1}}-1}
+{\frac{1}{\left(\frac{1-p}{p}\right)^{n_1}} -
+\left(\frac{1-p}{p}\right)^{n_2}} 
+= \frac{-1}{-\left(\frac{1-p}{p}\right)^{n_2}} =\\
+&= \left(\frac{p}{1-p}\right)^{n_2} = 
+\left(\frac{0,49}{0,51}\right)^{5} \approx 0,8187
+\end{split}
+\]
+\section*{2. feladat}
+\section*{3. feladat}
+\section*{4. feladat}
+\subsection*{a)}
+Szerintem az alapötleted jó, tehát a keresett valószínűség:
+\[P(\text{keresett}) = 1 - P(X = 0)\]
+de, a paraméter az megváltozik: $10 \cdot 5/60 = 5/6$ lesz (10 volt kezdetben, 
+és az 1 órára adott ennyit, most 5 percre kell, így jön ki a
+\mbox{sztocha6.pdf} példája alapján, amit a honlapról 
+\url{http://www.sze.hu/~harmati/sztocha2.html} le lehet tölteni). 
+Így a képlet:
+\[P(X) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}e^{-\frac{5}{6}} \approx 0,5654\]
+
+\subsection*{b)}
+Hasonlóan itt is a paraméter megválasztása szerintem helytelen. A helyes 
+paraméter szerintem: $10 \cdot 20/60 = 10/3$.
+\[P(X_{1/3} \geq 2) = P(X_{1/2}-X_{1/6} \mid X_{1/6}=0)\]
+Valóban diszjunktak az időtartamok, tehát a feltétel lényegtelen.
+\[
+P(X_{20/60} \geq 2) = 1 - \left( P(X_{20/60} = 0)+P(X_{20/60} = 1)\right)
+\]
+\[
+P(X_{20/60} \geq 2) = 1 - \frac{\left(\frac{10}{3}\right)^0}{0!}e^{-\frac{10}{3}} - \frac{\left(\frac{10}{3}\right)^1}{1!}e^{-\frac{10}{3}} \approx 0,8454
+\]
+
+\subsection*{c)}
+Itt ugye az a nehézség, hogy nem diszjunktak az időpillanatok így nem
+hagyhatóak el a feltételek.
+\begin{equation*}
+\begin{split}
+P(X_{60/60} = 10 \mid X_{30/60} = 4) &= \frac{P(X_1 = 10 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} \\
+&= \frac{P(X_1-X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)}
+\end{split}
+\end{equation*}
+A paraméter alakulása fél órára: $10 \cdot 30/60 = 5$
+\[
+\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{\frac{5^6}{6!}e^{-5} \cdot \frac{5^4}{4!} e^{-5}}{\frac{5^4}{4!} e^{-5}}
+\]
+Egyszerűsítve:
+\[
+\frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{5^4}{4!} e^{-5} \approx 0,1462
+\]
+
+\end{document}                          % vége a dokumentumnak és a fájlnak
