@@ -24,23 +24,27 @@
 \setcounter{tocdepth}{6} 				% tartalomjegyzék mélysége
 
 \title{Sztochasztikus folyamatok 2015-01-23 vizsga}
-\author{Készítette: Endreffy Zsolt}     
 %\renewcommand{\thesection}{\Roman{section}}  %Római számozású szekciók 
 \hyphenation{va-ló-szí-nű-ség-gel}
 
      
 \begin{document}                        % itt kezdődik a dokumentumunk
 \maketitle
+
+Figyelem! Természetesen a kidolgozás elolvasása nem ment fel a készülés
+alól. Csak azoknak tud érdemben segítséget nyújtani, akik egyébként is
+készültek. A feladatok helyességére semmilyen garanciát nem vállalok!
+Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
+elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
+
 \section*{1. feladat}
 Szerencsejátékot játszunk, minden egyes játszmában 0,49 valószínűséggel
 nyerünk 100 Ft-ot, 0,51 valószínűséggel pedig veszítünk ugyanennyit. 
 Kezdetben nekünk 1000 Ft-unk van, ellenfelünknek pedig 500. A játék
 addig tart, amíg valaki el nem veszíti az összes pénzét.
 
-\noindent
 (a) Mi a valószínűsége annak, hogy nyerünk, illetve veszítünk? (4 pont)
 
-\noindent
 (b) Ha több pénzzel kezdünk játszani, akkor nyilvánvalóan nagyobb 
 valószínűséggel nyerünk. Legfeljebb mekkora lehet a nyerésünk
 valószínűsége? (4 pont)
@@ -84,8 +88,106 @@ P(\text{nyerünk}) &=
 \end{split}
 \]
 \section*{2. feladat}
+Egy Markov-lánc állapottere legyen $S=\{1,2,3,4,5\}$, átmenetvalószínűségi
+mátrixa pedig:
+\[
+P = 
+\begin{bmatrix}
+1/2	&	1/2	&	0	&	0	&	0	\\
+0	&	1/2	&	1/2	&	0	&	0	\\
+0	&	0	&	1/2	&	1/2	&	0	\\
+0	&	0	&	0	&	1/2	&	1/2	\\
+1	&	0	&	0	&	0	&	0
+\end{bmatrix}
+\]
+
+(a) Irreducibilis-e a Markov-lánc? (3 pont)
+
+(b) Határozzuk meg az invariáns eloszlást! (5 pont)
+
+(c) Tegyük fel, hogy az 1-esből indulunk. Átlagosan hány lépéssel érünk
+vissza? (3 pont)
+
+(d) Tegyük fel, hogy a 2-esből indulunk. Átlagosan hány lépéssel érünk
+az 5-ösbe? (5 pont)
+
+\subsection*{a)}
+Szerintem sokat segít, ha felrajzoljuk a mátrix állapotokat is a mátrix
+széleire.
+
+\[
+\mathbf{P} = 
+\bordermatrix{
+~	&	1	&	2	&	3	&	4	&	5	\cr
+1	&	1/2	&	1/2	&	0	&	0	&	0	\cr
+2	&	0	&	1/2	&	1/2	&	0	&	0	\cr
+3	&	0	&	0	&	1/2	&	1/2	&	0	\cr
+4	&	0	&	0	&	0	&	1/2	&	1/2	\cr
+5	&	1	&	0	&	0	&	0	&	0}
+\]
+
+Az irreducibilis azt jelenti hogy nem felbontható, tehát mindegyik 
+állapot kapcsolódó. Megint másképpen megfogalmazva: bármely 
+állapotból kiindulva elérhető bármely másik állapot. Ezt nagyon jól
+lehet látni, amennyiben felrajzoljuk az állapotátmeneti gráfot.
+Azon egyértelműen látható, hogy egy rekurrens osztály van:
+$\{1, 2, 3, 4, 5\}$.
+
+\subsection*{b)}
+Itt a mátrix oszlopait tekintve lehet felírni az alábbi egyenleteket:
+
+\begin{align*}
+\pi_1 &= 0,5 \pi_1 + \pi_5 \\
+\pi_2 &= 0,5 \pi_1 + 0,5 \pi_2 \\
+\pi_3 &= 0,5 \pi_2 + 0,5 \pi_3 \\
+\pi_4 &= 0,5 \pi_3 + 0,5 \pi_4 \\
+\pi_5 &= 0,5 \pi_4 \\
+\text{Ezt meg } &\text{tudjuk a tanulmányainkból:} \\
+\sum_{i} \pi_i &= 1 = \pi_1 + \pi_2 + \pi_3 + \pi_4 + \pi_5
+\end{align*}
+
+Ezt az egyenletrendszert végig kell oldani, és akkor megkapjuk a
+megoldást erre kérdésre:
+
+\[
+\pi_1 = \frac{2}{9},
+\pi_2 = \frac{2}{9},
+\pi_3 = \frac{2}{9},
+\pi_4 = \frac{2}{9},
+\pi_5 = \frac{1}{9},
+\]
+
+\subsection*{c)}
+Ez nagyon egyszerű, ha már meghatároztuk az invariáns eloszlást:
+
+\[
+E(\pi_1) = \frac{1}{\pi_1} = \frac{9}{2} = 4,5
+\]
+
 \section*{3. feladat}
+Két urnában ($A$ és $B$) összesen két golyó van. Egy szabályos 
+dobókockával dobunk. Ha a dobott szám hatos vagy egyes, akkor egy
+golyót átrakunk $A$-ból $B$-be, a többi esetben egy golyót teszünk
+át $B$-ből $A$-ba. Ha üres urnából kellene golyót áttenni a másikba,
+akkor nem csinálunk semmit, de azt is egy lépésnek tekintjük.
+Tekintsük állapotnak a golyók számát az $A$ urnában!
+
+(a) Adjuk meg az átmeneti valószínűségi mátrixot! (5 pont)
+
+(b) Adjuk meg az invariáns eloszlást! (5 pont)
+
 \section*{4. feladat}
+Egy üzletbe Poisson-folyamat szerint érkeznek a vevők, óránként 
+átlagosan 10.
+
+(a) Mi a valószínűsége annak, hogy 5 perc alatt jön vevő? (3 pont)
+
+(b) Feltéve, hogy 10 percig nem jött senki, mi a valószínűsége, hogy a
+következő 20 percben legalább ketten jönnek? (3 pont)
+
+(c) Feltéve, hogy az első félórában 4 vevő jött, mi a valószínűsége, 
+hogy összesen 10 vevő jön az első órában? (4 pont)
+
 \subsection*{a)}
 Szerintem az alapötleted jó, tehát a keresett valószínűség:
 \[P(\text{keresett}) = 1 - P(X = 0)\]
@@ -131,5 +233,21 @@ Egyszerűsítve:
 \frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = 
 \frac{5^4}{4!} e^{-5} \approx 0,1462
 \]
+
+\section*{5. feladat}
+Egy üzletben egyetlen eladó dolgozik, aki exponenciális eloszlású idő 
+alatt szolgál ki egy vevőt (az átlagos kiszolgálási idő 5 perc). A vevők
+érkezése között eltelt idő  szintén exponenciális eloszlású, továbbá 
+tudjuk azt is, hogy egy óra alatt átlagosan 8 vevő érkezik. Az üzlet 
+befogadóképessége végtelen.
+
+(a) Mi a valószínűsége, hogy van vevő a boltban? (4 pont)
+
+(b) Mi a valószínűsége annak, hogy pontosan annyi vevő van a boltban, 
+amennyi a boltban tartózkodó vevők számának várható értéke? (4 pont)
+
+(c) Átlagosan mennyi időt tölt el egy vevő a boltban? (4 pont)
+
+(d) Átlagosan hányan várják azt, hogy végre sorra kerüljenek? (4 pont)
 
 \end{document}                          % vége a dokumentumnak és a fájlnak
