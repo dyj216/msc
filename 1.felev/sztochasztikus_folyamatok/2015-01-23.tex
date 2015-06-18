@@ -16,7 +16,7 @@
 %\usepackage{fancyhdr} 					% élőfej formázás 
 \usepackage[magyar]{babel}				% nyelvi csomagok utolsó az alapértelmezett a magyar.ldf fájlt be kell másolni a sokumentum könyvtárba
 %\pagestyle{fancy}						% élőfej a lap tetején (fancy-ban az elsőlapra nem kerül)
-%\sloppy								% megakadályozza a jobra kilógást 8˙csúnya)
+\sloppy								% megakadályozza a jobra kilógást 8˙csúnya)
 
 \frenchspacing                          % a mondatköz ugyanakkora nagy, mint a szóköz
 \setlength{\parskip}{\smallskipamount}  % bekezdések közötti távolság beállítása %(gumi-méret: 3pt plus 1pt minus 1 pt)
@@ -36,6 +36,11 @@ alól. Csak azoknak tud érdemben segítséget nyújtani, akik egyébként is
 készültek. A feladatok helyességére semmilyen garanciát nem vállalok!
 Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
 elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
+
+A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
+\texttt{sztocha1.pdf -- sztocha8.pdf}-eket. Ezekre vannak hivatkozások 
+ebben a kidolgozásban is. Ezek elérhetőek a 
+\url{http://www.sze.hu/~harmati/sztocha2.html} címen.
 
 \section*{1. feladat}
 Szerencsejátékot játszunk, minden egyes játszmában 0,49 valószínűséggel
@@ -87,6 +92,8 @@ P(\text{nyerünk}) &=
 \left(\frac{0,49}{0,51}\right)^{5} \approx 0,8187
 \end{split}
 \]
+
+\pagebreak
 \section*{2. feladat}
 Egy Markov-lánc állapottere legyen $S=\{1,2,3,4,5\}$, átmenetvalószínűségi
 mátrixa pedig:
@@ -164,6 +171,7 @@ Ez nagyon egyszerű, ha már meghatároztuk az invariáns eloszlást:
 E(\pi_1) = \frac{1}{\pi_1} = \frac{9}{2} = 4,5
 \]
 
+\pagebreak
 \section*{3. feladat}
 Két urnában ($A$ és $B$) összesen két golyó van. Egy szabályos 
 dobókockával dobunk. Ha a dobott szám hatos vagy egyes, akkor egy
@@ -176,6 +184,7 @@ Tekintsük állapotnak a golyók számát az $A$ urnában!
 
 (b) Adjuk meg az invariáns eloszlást! (5 pont)
 
+\pagebreak
 \section*{4. feladat}
 Egy üzletbe Poisson-folyamat szerint érkeznek a vevők, óránként 
 átlagosan 10.
@@ -193,7 +202,7 @@ Szerintem az alapötleted jó, tehát a keresett valószínűség:
 \[P(\text{keresett}) = 1 - P(X = 0)\]
 de, a paraméter az megváltozik: $10 \cdot 5/60 = 5/6$ lesz (10 volt kezdetben, 
 és az 1 órára adott ennyit, most 5 percre kell, így jön ki a
-\mbox{sztocha6.pdf} példája alapján, amit a honlapról 
+\texttt{sztocha6.pdf} példája alapján, amit a honlapról 
 \url{http://www.sze.hu/~harmati/sztocha2.html} le lehet tölteni). 
 Így a képlet:
 \[P(X) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}
@@ -234,6 +243,7 @@ Egyszerűsítve:
 \frac{5^4}{4!} e^{-5} \approx 0,1462
 \]
 
+\pagebreak
 \section*{5. feladat}
 Egy üzletben egyetlen eladó dolgozik, aki exponenciális eloszlású idő 
 alatt szolgál ki egy vevőt (az átlagos kiszolgálási idő 5 perc). A vevők
