@@ -1,6 +1,8 @@
 \documentclass[a4paper,12pt]{article}   		% A4-es papír USLetter helyett (az a default)
 \usepackage[utf8]{inputenc}           	% Latin-2-es kódolású ez a forrás
-%\usepackage{t1enc}                      % a belső ábrázolás és a kimeneti font-kódolás % a T1 kódolás
+%\usepackage[T1]{fontenc}
+\usepackage{t1enc}
+\usepackage{lmodern}
 %\usepackage{uarial}				       % betűtipus beállítás
 \usepackage{indentfirst}                % az első bekezdés is behúzott legyen, ne csak a 2-tól
 %\usepackage{titlepic}					% kép a címoldalra
@@ -9,6 +11,7 @@
 \usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref} % kilkkelhető lesz a PDF (és szépen formázott a hidelinks paranccsal) % 
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{hyphenat}
 %\def\magyarOptions{defaults=hu-min}		% A magyar tartalomjegyzékhez kell, enélkül nem jó helyre kerűl a hívatkozás. Be kell még másolni a szerkesztett doumentum könyvtárba a legújabb "magyar.ldf" fájlt. 
 %\usepackage{fancyhdr} 					% élőfej formázás 
 \usepackage[magyar]{babel}				% nyelvi csomagok utolsó az alapértelmezett a magyar.ldf fájlt be kell másolni a sokumentum könyvtárba
@@ -22,15 +25,29 @@
 \setcounter{tocdepth}{6} 				% tartalomjegyzék mélysége
 
 \title{Sztochasztikus folyamatok 2015-01-23 vizsga}
-\author{Készítette: Endreffy Zsolt}
-        
+\author{Készítette: Endreffy Zsolt}     
 %\renewcommand{\thesection}{\Roman{section}}  %Római számozású szekciók 
-
+\hyphenation{va-ló-szí-nű-ség-gel}
 
      
 \begin{document}                        % itt kezdődik a dokumentumunk
+\maketitle
 \section*{1. feladat}
+Szerencsejátékot játszunk, minden egyes játszmában 0,49 valószínűséggel
+nyerünk 100 Ft-ot, 0,51 valószínűséggel pedig veszítünk ugyanennyit. 
+Kezdetben nekünk 1000 Ft-unk van, ellenfelünknek pedig 500. A játék
+addig tart, amíg valaki el nem veszíti az összes pénzét.
+
+\noindent
+(a) Mi a valószínűsége annak, hogy nyerünk, illetve veszítünk? (4 pont)
+
+\noindent
+(b) Ha több pénzzel kezdünk játszani, akkor nyilvánvalóan nagyobb 
+valószínűséggel nyerünk. Legfeljebb mekkora lehet a nyerésünk
+valószínűsége? (4 pont)
 \subsection*{a)}
+Egy játék nyerési valószínűsége $p$, a vesztési valószínűség $1-p=q$.
+
 \[p = 0,49\]
 \[1-p = q = 0,51\]
 
