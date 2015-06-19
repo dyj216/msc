@@ -38,9 +38,12 @@ Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
 elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
 
 A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
-\texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre vannak hivatkozások 
-ebben a kidolgozásban is. Ezek elérhetőek a 
-\url{http://www.sze.hu/~harmati/sztocha2.html} címen.
+\texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre 
+vannak hivatkozások ebben a kidolgozásban is. Ezek elérhetőek a 
+\url{http://www.sze.hu/~harmati/sztocha2.html} címen. A vizsgákon a 
+feladattípusok ugyanazt a sémát követik, minden feladat egy--egy 
+anyagrészre kérdez rá, természetesen a pontos feladattípusok vizsgáról
+vizsgára változnak.
 
 \section*{1. feladat}
 Szerencsejátékot játszunk, minden egyes játszmában 0,49 valószínűséggel
@@ -161,7 +164,7 @@ megoldást erre kérdésre:
 \pi_2 = \frac{2}{9},
 \pi_3 = \frac{2}{9},
 \pi_4 = \frac{2}{9},
-\pi_5 = \frac{1}{9},
+\pi_5 = \frac{1}{9}
 \]
 
 \subsection*{c)}
@@ -228,7 +231,8 @@ Ezekből kiszámolva:
 
 A többi nem érdekes, hiszen ebből kiszámolható a $2$-ből $5$-be
 jutás várható értéke. Azért kell levonni $2$-t, mert jelenleg a
-$h$-ból $h$-ba megyünk, és nem az a kérdés.
+$h$-ból $h$-ba megyünk, és nem az a kérdés, a két lépést ami a 
+$h$-ból indulást és a $h$-ba érkezést jelenti le kell vonni.
 
 \[
 E(T_{2 \to 5}) = E(T_{h \to h}) - 2 = \frac{1}{\pi_h} - 2 =
@@ -248,6 +252,68 @@ Tekintsük állapotnak a golyók számát az $A$ urnában!
 
 (b) Adjuk meg az invariáns eloszlást! (5 pont)
 
+\subsection*{a)}
+A golyók száma az $A$ urnában adja meg az állapotokat. Összesen két
+golyó van. Így az $A$ urnában $\{0, 1, 2\}$ golyó lehet. A dobásokat le
+kell fordítani valószínűségekre:
+
+\begin{itemize}
+\item 1-es vagy 6-os dobás esetén kettővel csökken az $A$-ban lévő golyók
+száma. Ennek $2/6 = 1/3$ valószínűsége van.
+\item 5-ös szám dobása esetén a golyók száma $A$-ban 0 lesz. Ennek 
+$1/6$ valószínűsége van.
+\item A többi szám dobása esetén eggyel csökken az $A$-ban lévő golyók
+száma. Ennek $3/6 = 1/2$ valószínűsége van.
+\end{itemize}
+
+Az átmeneti valószínűségi mátrixban a sorok jelzik azokat az állapotokat,
+amelyikben vagyunk és az oszlopok pedig azokat, amelyikbe megyünk. Így 
+az $A$-ban lévő golyók számának átmeneti valószínűségi mátrixa:
+
+\[
+\mathbf{P} = 
+\bordermatrix{
+~	&	0			&	1			&	2   		\cr \\[0.4em]
+0	&	\frac{3}{6}	&	\frac{3}{6}	&	0			\cr \\[0.4em]
+1	&	\frac{3}{6}	&	0			&	\frac{3}{6}	\cr \\[0.4em]
+2	&	\frac{1}{6}	&	\frac{2}{6}	&	\frac{3}{6}}
+\]
+
+Egy kis magyarázat a mátrix elemeihez:
+A $\mathbf{P}(1, 1)$ elem esetén az üres $A$-ból próbálunk golyót átrakni: 
+ezt nem tudjuk megtenni: így az első két eset valószínűsége összeadódik, és
+a kettő összege adja a $3/6$-ot. $\mathbf{P}(2, 1)$ esetén is hasonlóan 
+adódik a valószínűség.
+
+\subsection*{b)}
+Az invariáns eloszlást ebből az egyenletrendszerből kell kiszámolni:
+
+\begin{align*}
+\pi_0 &= \frac{3}{6} \pi_0 + \frac{3}{6}\pi_1 + \frac{1}{6}\pi_2 \\
+\pi_1 &= \frac{3}{6} \pi_0 + \frac{2}{6} \pi_2 \\
+\pi_2 &= \frac{3}{6} \pi_1 + \frac{3}{6} \pi_2 \\
+\sum_{i}\pi_i = 1 &= \pi_0 + \pi_1 + \pi_2
+\end{align*}
+
+Kis magyarázat: az első egyenletet úgy kapjuk meg, hogy az átmeneti
+valószínűségi mátrix első oszlopának megnézzük az állapotát, ami 0.
+Ebből lesz $\pi_0$, az egyenlet bal oldala. Aztán összeszorozzuk az 
+alatta lévő valószínűséget a valószínűség sorának megfelelő állapotú
+$\pi$-jével és összeadjuk: $\frac{3}{6} \pi_0$ az első sor első eleme,
+$\frac{3}{6} \pi_1$ a második sor első eleme és $\frac{1}{6} \pi_2$
+a harmadik sor első eleme. Ezek adják az egyenlet jobb oldalát.
+Ezt minden oszlopra el kell végezni és így kapjuk a fenti 
+egyenletrendszert. Az utolsó egyenletet pedig abból kapjuk, hogy az
+invariáns eloszlások összege mindig egyet ad.
+
+Az egyenletrendszert megoldva azt kapjuk, hogy:
+
+\[
+\pi_0 = \frac{4}{10},
+\pi_1 = \frac{3}{10},
+\pi_2 = \frac{3}{10},
+\]
+
 \pagebreak
 \section*{4. feladat}
 Egy üzletbe Poisson-folyamat szerint érkeznek a vevők, óránként 
@@ -261,51 +327,84 @@ következő 20 percben legalább ketten jönnek? (3 pont)
 (c) Feltéve, hogy az első félórában 4 vevő jött, mi a valószínűsége, 
 hogy összesen 10 vevő jön az első órában? (4 pont)
 
+\subsection*{Bevezető}
+Ilyen jellegű feladatok a \texttt{sztocha\_06.pdf}-ben találhatóak.
+
+A Poisson--eloszlás általános képlete $\lambda t$ paraméterrel, ahol a
+$X_t$ azt jelenti, hogy $t$ idő alatt $k$ számú vevő jön a boltba:
+
+\[
+P(X_t = k) = \frac{\left(\lambda t\right)^k}{k!}e^{-\lambda t} 
+\]
+
 \subsection*{a)}
-Szerintem az alapötleted jó, tehát a keresett valószínűség:
-\[P(\text{keresett}) = 1 - P(X = 0)\]
-de, a paraméter az megváltozik: $10 \cdot 5/60 = 5/6$ lesz (10 volt kezdetben, 
-és az 1 órára adott ennyit, most 5 percre kell, így jön ki a
-\texttt{sztocha6.pdf} példája alapján, amit a honlapról 
-\url{http://www.sze.hu/~harmati/sztocha2.html} le lehet tölteni). 
-Így a képlet:
-\[P(X) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}
+Ebben a feladatban a $\lambda = 10$ fő/óra.
+
+Az, hogy öt perc alatt jön vevő, az megegyezik azzal, hogy $1-$ (az első
+öt percben nem jött vevő):
+
+\[P(\text{keresett}) = 1 - P(X_{\text{első öt perc}} = 0)\]
+
+A paraméter az megváltozik, mert $t = 5$ perc, $\lambda = 10$ marad: 
+$\lambda t = 10 \cdot 5/60 = 5/6$ lesz (10 volt kezdetben, 
+és az 1 órára adott ennyit, most 5 percre kell). Így a képlet:
+
+\[P(\text{keresett}) = 1 - P(X_\frac{5}{60} = 0) = 1 - \frac{\frac{5}{6}^0}{0!}
 e^{-\frac{5}{6}} \approx 0,5654\]
 
 \subsection*{b)}
-Hasonlóan itt is a paraméter megválasztása szerintem helytelen. A helyes 
-paraméter szerintem: $10 \cdot 20/60 = 10/3$.
+Hasonlóan itt is a paraméter megváltozik ($t=20$ perc): 
+$\lambda t = 10 \cdot 20/60 = 10/3$.
+
 \[P(X_{1/3} \geq 2) = P(X_{1/2}-X_{1/6} \mid X_{1/6}=0)\]
+
 Valóban diszjunktak az időtartamok, tehát a feltétel lényegtelen.
+
 \[
-P(X_{20/60} \geq 2) = 1 - \left( P(X_{20/60} = 0)+P(X_{20/60} = 1)\right)
-\]
-\[
-P(X_{20/60} \geq 2) = 1 - \frac{\left(\frac{10}{3}\right)^0}{0!}e^
-{-\frac{10}{3}} - \frac{\left(\frac{10}{3}\right)^1}{1!}e^{-\frac{10}{3}} 
+\begin{split}
+P(X_{20/60} \geq 2) &= 
+1 - \left( P(X_{20/60} = 0) + P(X_{20/60} = 1)\right) = \\
+&= 1 - \frac{\left(\frac{10}{3}\right)^0}{0!}e^{-\frac{10}{3}}
+\frac{\left(\frac{10}{3}\right)^1}{1!}e^{-\frac{10}{3}}
 \approx 0,8454
+\end{split}
 \]
 
 \subsection*{c)}
 Itt ugye az a nehézség, hogy nem diszjunktak az időpillanatok így nem
 hagyhatóak el a feltételek.
-\begin{equation*}
+
+\[
 \begin{split}
 P(X_{60/60} = 10 \mid X_{30/60} = 4) &= \frac{P(X_1 = 10 \cap X_{1/2} = 4)}
 {P(X_{1/2} = 4)} \\
 &= \frac{P(X_1-X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)}
 \end{split}
-\end{equation*}
-A paraméter alakulása fél órára: $10 \cdot 30/60 = 5$
+\]
+
+A paraméter alakulása $t = 30$ percre: 
+$\lambda t = 10 \cdot 30/60 = 5$.
+
 \[
 \frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = \frac{\frac{5^6}{6!}
 e^{-5} \cdot \frac{5^4}{4!} e^{-5}}{\frac{5^4}{4!} e^{-5}}
 \]
-Egyszerűsítve:
+
+Ez azt jelenti, hogy az első fél órában 4 fő érkezik és a következő fél
+órában még további 6. Egyszerűsítve:
+
 \[
 \frac{P(X_{1/2} = 6 \cap X_{1/2} = 4)}{P(X_{1/2} = 4)} = 
+P(X_{1/2} = 6) =
 \frac{5^4}{4!} e^{-5} \approx 0,1462
 \]
+
+Ha az elején gondolkoztunk volna, akkor ugyanígy megkaphattuk volna ezt az 
+eredményt: ha egy óra alatt 10 fő érkezik, és az első félórában ebből már
+megérkezik 4, akkor a következő fél órában 6-nak kell érkeznie, ez már 
+egy független esemény: $P(X_{1/2} = 6)$. Legalább láthatjuk, hogy egy kis
+gondolkodás és a \textit{brute force} matematika is ugyanarra az 
+eredményre vezet.
 
 \pagebreak
 \section*{5. feladat}
@@ -324,4 +423,72 @@ amennyi a boltban tartózkodó vevők számának várható értéke? (4 pont)
 
 (d) Átlagosan hányan várják azt, hogy végre sorra kerüljenek? (4 pont)
 
-\end{document}                          % vége a dokumentumnak és a fájlnak
+\subsection*{Bevezető}
+Ez egy $M/M/1$ jellegű feladat. Ezekről a feladattípusokról a
+\mbox{\texttt{sztocha\_08.pdf}}-ben lehet többet olvasni. Más 
+feladattípusra nem feltétlenül érvényesek az itt ismertetett képletek,
+de ezek a képletek pont olyanok, amelyeket érdemes kiírni a
+használható egy darab A/4-es kézzel írt papírra.
+
+A valószínűségi eloszlás $M/M/1$ általános képlete, ahol $\pi_k$ megadja
+a $k$-adik valószínűséget (itt pl. azt, hogy $k$ vevő van a boltban, és
+ennek a valószínűségét):
+
+\[
+\pi_k = \left( 1 - \frac{\lambda}{\mu} \right) 
+\left( \frac{\lambda}{\mu} \right)^k
+\]
+
+\subsection*{a)}
+A $\mu$ jelöli a kiszolgálás átlagos gyakoriságát, jelenleg 
+$\mu = \frac{60 \text{perc}}{5 \text{perc/fő}} = 12$ fő/óra.
+
+A $\lambda$ jelöli a beérkező igények átlagos gyakoriságát, jelenleg
+$\lambda = 8$ fő/óra.
+
+\[
+\begin{split}
+P(\text{van vevő}) = 1 - P(\text{nincs vevő}) &= 
+1 - \left( 1 - \frac{\lambda}{\mu} \right) 
+\left( \frac{\lambda}{\mu} \right)^k = \\
+&=1 - \left( 1 - \frac{8}{12} \right) 
+\left( \frac{8}{12} \right)^0 = \frac{2}{3}
+\end{split}
+\]
+
+\subsection*{b)}
+A boltban tartózkodó vevők várható értéke:
+
+\[
+E(N) = \frac{\lambda}{\mu - \lambda} = \frac{8}{4} = 2
+\]
+
+Annak a valószínűsége, hogy ketten vannak a boltban: 
+
+\[
+P(\text{ketten vannak}) = \pi_2 = 
+\left( 1 - \frac{8}{12} \right) 
+\left( \frac{8}{12} \right)^2 \approx 0,1481
+\]
+
+\subsection*{c)}
+Átlagosan ennyi időt tölt el egy vevő a boltban:
+
+\[
+E(T) = \frac{1}{\mu - \lambda} = \frac{1}{4}
+\]
+
+Átlagosan tehát $1/4$ órát, azaz 15 percet tölt egy vevő a boltban.
+
+\subsection*{d)}
+Az átlagos várakozók száma ($w$: wait):
+
+\[
+E(N_w) = \frac{\lambda^2}{\mu} \cdot \frac{1}{\mu - \lambda} =
+\frac{8^2}{12} \cdot \frac{1}{12 - 8} = \frac{4}{3}
+\]
+
+Átlagosan tehát $4/3$ fő várakozik. Természetesen itt lehet tört
+számot kapni, ez nem probléma.
+
+\end{document}
