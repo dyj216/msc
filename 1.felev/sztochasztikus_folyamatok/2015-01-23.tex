@@ -38,7 +38,7 @@ Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
 elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
 
 A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
-\texttt{sztocha1.pdf -- sztocha8.pdf}-eket. Ezekre vannak hivatkozások 
+\texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre vannak hivatkozások 
 ebben a kidolgozásban is. Ezek elérhetőek a 
 \url{http://www.sze.hu/~harmati/sztocha2.html} címen.
 
@@ -168,7 +168,71 @@ megoldást erre kérdésre:
 Ez nagyon egyszerű, ha már meghatároztuk az invariáns eloszlást:
 
 \[
-E(\pi_1) = \frac{1}{\pi_1} = \frac{9}{2} = 4,5
+E(T_{1\to1}) = \frac{1}{\pi_1} = \frac{9}{2} = 4,5
+\]
+
+\subsection*{d)}
+A feltételt úgy valósíthatjuk meg, hogy létrehozunk egy új $h$
+állapotot, amely a kiindulási állapot lesz és ahonnan a kettes
+állapotba fogunk átlépni. Az ötös állapotból pedig a $h$ állapotba 
+lépünk. Az új $\mathbf{P}$ mátrix:
+
+\[
+\mathbf{P} = 
+\bordermatrix{
+~	&	1	&	2	&	3	&	4	&	5	&    h    \cr
+1	&	1/2	&	1/2	&	0	&	0	&	0	&    0    \cr
+2	&	0	&	1/2	&	1/2	&	0	&	0	&    0    \cr
+3	&	0	&	0	&	1/2	&	1/2	&	0	&    0    \cr
+4	&	0	&	0	&	0	&	1/2	&	1/2	&    0    \cr
+5	&	0	&	0	&	0	&	0	&	0   &    1    \cr
+h	&	0	&	1	&	0	&	0	&	0   &    0}
+\]
+
+Viszont ez a mátrix már nem irreducibilis, hiszen nem csak rekurrens
+osztályokból áll, hanem tranziens állapot (tranziens állapot = ha 
+elhagytuk az állapotot, akkor már nem térünk bele vissza) is található 
+benne. Ez szintén jól látható az állapotátmeneti gráfon.
+
+Tehát az ${1}$ tranziens osztályt eltávolítva a $\mathbf{P}$ mátrixból
+megkapjuk az egyetlen ${2, 3, 4, 5, h}$ rekurrens osztályból álló
+$\mathbf{P'}$ mátrixot.
+
+\[
+\mathbf{P'} = 
+\bordermatrix{
+~	&	2	&	3	&	4	&	5	&    h    \cr
+2	&	1/2	&	1/2	&	0	&	0	&    0    \cr
+3	&	0	&	1/2	&	1/2	&	0	&    0    \cr
+4	&	0	&	0	&	1/2	&	1/2	&    0    \cr
+5	&	0	&	0	&	0	&	0   &    1    \cr
+h	&	1	&	0	&	0	&	0   &    0}
+\]
+
+Ennek is fel kell írni és ki kell számolni az invariáns eloszlását:
+
+\begin{align*}
+\pi_2 &= 0,5 \pi_1 + \pi_h \\
+\pi_3 &= 0,5 \pi_2 + 0,5 \pi_3 \\
+\pi_4 &= 0,5 \pi_3 + 0,5 \pi_4 \\
+\pi_5 &= 0,5 \pi_4 \\
+\pi_h &= \pi_5 \\
+1 &= \pi_2 + \pi_3 + \pi_4 + \pi_5 + \pi_h
+\end{align*}
+
+Ezekből kiszámolva:
+
+\[
+\pi_h = \frac{1}{8}
+\]
+
+A többi nem érdekes, hiszen ebből kiszámolható a $2$-ből $5$-be
+jutás várható értéke. Azért kell levonni $2$-t, mert jelenleg a
+$h$-ból $h$-ba megyünk, és nem az a kérdés.
+
+\[
+E(T_{2 \to 5}) = E(T_{h \to h}) - 2 = \frac{1}{\pi_h} - 2 =
+8-2 = 6
 \]
 
 \pagebreak
