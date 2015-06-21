@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{t1enc}
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{indentfirst}
 \usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
@@ -23,8 +23,9 @@
 Figyelem! Természetesen a kidolgozás elolvasása nem ment fel a készülés
 alól. Csak azoknak tud érdemben segítséget nyújtani, akik egyébként is
 készültek. A feladatok helyességére semmilyen garanciát nem vállalok!
-Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
-elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
+Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás és 
+a \texttt{.pdf} elérhető az \url{https://github.com/dyj216/msc-sze-vill} 
+címen. A fájlokat a ,,Raw'' gombra való kattintással lehet letölteni.
 
 A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
 \texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre vannak hivatkozások 
@@ -67,13 +68,13 @@ P(\textrm{nyerek}) =
 \frac{1 - \left( \frac{1-p}{p} \right)^{n_1}}
 {1 - \left( \frac{1-p}{p} \right)^{n_1 + n_2}} = 
 \frac{1 - \left( \frac{0,51}{0,49} \right)^{5}}
-{1 - \left( \frac{0,51}{0,49} \right)^{6}} \approx ...
+{1 - \left( \frac{0,51}{0,49} \right)^{6}} \approx 0,8162
 \]
 
 Annak a valószínűsége, hogy vesztünk:
 
 \[
-P(\textrm{vesztek}) = 1 - P(\textrm{nyerek}) = ...
+P(\textrm{vesztek}) = 1 - P(\textrm{nyerek}) = 0,1838
 \]
 
 \subsection*{c)}
@@ -86,7 +87,7 @@ P(\textrm{nyerek}) =
 \frac{1 - \left( \frac{1-p}{p} \right)^{n_1}}
 {1 - \left( \frac{1-p}{p} \right)^{n_1 + n_2}} = 
 \frac{1 - \left( \frac{0,51}{0,49} \right)^{200}}
-{1 - \left( \frac{0,51}{0,49} \right)^{240}} \approx ...
+{1 - \left( \frac{0,51}{0,49} \right)^{240}} \approx 0,2018
 \]
 
 \subsection*{d)}
@@ -107,7 +108,7 @@ P(\text{nyerünk}) &=
 \left(\frac{1-p}{p}\right)^{n_2}} 
 = \frac{-1}{-\left(\frac{1-p}{p}\right)^{n_2}} =\\
 &= \left(\frac{p}{1-p}\right)^{n_2} = 
-\left(\frac{0,49}{0,51}\right)^{40} \approx ...
+\left(\frac{0,49}{0,51}\right)^{40} \approx 0,2019
 \end{split}
 \]
 
@@ -116,10 +117,10 @@ Adott az $\{1, 2\}$ állapotokkal rendelkező Markov-lánc
 az alábbi állapotvalószínűségi mátrixszal:
 
 \[
-p = 
+P = 
 \begin{bmatrix} 
-0,2    &    0,8 \\
-0,4    &    0,6
+0,2    &    0,6 \\
+0,4    &    0,8
 \end{bmatrix}
 \]
 
@@ -166,8 +167,8 @@ lemásolja az eredményt,  többiek kézzel kiszámolják.
 P^2 = 
 \bordermatrix{
 ~	&	1	    &	2    	\cr
-1	&	0,36	&	0,62	\cr
-2	&	0,34	&	0,68}
+1	&	0,36	&	0,64	\cr
+2	&	0,32	&	0,68}
 \]
 
 Innen a keresett valószínűség az ennek a mátrixnak a második sorának
@@ -230,7 +231,7 @@ száma.
 
 (a) Írja fel az állapotvalószínűségi mátrixot!
 
-(b) ??? Talán az volt, hogy adja meg az invariáns eloszlást?
+(b) ??? Talán az volt, hogy adja meg az invariáns eloszlást ???
 
 \subsection*{a)}
 Ha megértjük, hogy miket jelentenek az állapotok, ez a feladat is
@@ -250,12 +251,35 @@ P =
 \]
 
 Egy kis magyarázat: 
-\itemize
+\begin{itemize}
 \item Amikor 0 db sárga golyó van az $A$-ban, akkor
 1 a valószínűsége annak, hogy az $A$-ból fehéret veszünk ki, és
 $1/2$ annak a valószínűsége, hogy a $B$-ből fehéret veszünk ki, 
-ez adja a mátrix $(0, 0)$ elemét. 
+ezek szorzata adja a mátrix $(0, 0)$ elemét. 
 \item Szintén $1/2$ annak a valószínűsége,
 hogy sárgát veszünk ki a $B$-ből, ez a mátrix $(0, 1)$-es elemét adja.
+\item Az $(1, 0)$-ás elemet úgy kapjuk, hogy ha már van egy sárga golyó
+az $A$ dobozban, akkor akkor $1/4$ annak a valószínűsége, hogy azt
+húzzuk ki és tesszük át a $B$-be, és akkor lesz 0 sárga golyó az 
+$A$-ban, ha a $B$-ből fehér golyót teszünk át $A$-ba, aminek $3/4$ a 
+valószínűsége. Ennek a kettőnek a szorzata adja a $3/16$-ot.
+\item Az $(1, 2)$-es elemre is hasonlóan juthatunk, mint ahogy az
+előző pontban jutottunk.
+\item Az $(1, 1)$-es elemet szintén megkaphatjuk, ha végiggondoljuk, 
+hogy hogyan lehet az, hogy 1 sárga golyó volt az $A$-ban és 1 lesz a
+csere után is, de könnyebb onnan kiszámolni, hogy a sorok összegének
+1-et kell adnia a Markov--láncokban, tehát $1-3/16-3/16 = 10/16$ ennek
+a valószínűsége.
+\end{itemize}
+
+\section*{4. feladat}
+Erre már nem emlékszem, csak annyira, hogy tipikus Poisson--eloszlású
+feladat volt, az (a) részben egy időtartam alatt érkezők száma volt a
+kérdés, a (b) részben egy független feltétel volt vizsgálva, azaz 
+elhagyható volt az a feltétel, és a (c) részben pedig egy feltételes
+valószínűséget kellett számolni.
+
+\section*{5. feladat}
+Erre sem emlékszem, de ez meg egy M/M/1-es típusú feladat volt.
 
 \end{document}
