@@ -1,0 +1,33 @@
+\documentclass[a4paper,12pt]{article}   		% A4-es papír USLetter helyett (az a default)
+\usepackage[utf8]{inputenc}           	% Latin-2-es kódolású ez a forrás
+%\usepackage[T1]{fontenc}
+\usepackage{t1enc}
+\usepackage{lmodern}
+%\usepackage{uarial}				       % betűtipus beállítás
+\usepackage{indentfirst}                % az első bekezdés is behúzott legyen, ne csak a 2-tól
+%\usepackage{titlepic}					% kép a címoldalra
+%\usepackage{color}						% színes betűk
+%\usepackage{graphicx}					% a sokumentumba képeket lehet beszúrni
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref} % kilkkelhető lesz a PDF (és szépen formázott a hidelinks paranccsal) % 
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{hyphenat}
+%\def\magyarOptions{defaults=hu-min}		% A magyar tartalomjegyzékhez kell, enélkül nem jó helyre kerűl a hívatkozás. Be kell még másolni a szerkesztett doumentum könyvtárba a legújabb "magyar.ldf" fájlt. 
+%\usepackage{fancyhdr} 					% élőfej formázás 
+\usepackage[magyar]{babel}				% nyelvi csomagok utolsó az alapértelmezett a magyar.ldf fájlt be kell másolni a sokumentum könyvtárba
+%\pagestyle{fancy}						% élőfej a lap tetején (fancy-ban az elsőlapra nem kerül)
+\sloppy								% megakadályozza a jobra kilógást 8˙csúnya)
+
+\frenchspacing                          % a mondatköz ugyanakkora nagy, mint a szóköz
+\setlength{\parskip}{\smallskipamount}  % bekezdések közötti távolság beállítása %(gumi-méret: 3pt plus 1pt minus 1 pt)
+\setcounter{secnumdepth}{6}				% több szintű tartalom és tartalomjegyzék
+\setcounter{tocdepth}{6} 				% tartalomjegyzék mélysége
+
+\title{}
+%\renewcommand{\thesection}{\Roman{section}}  %Római számozású szekciók 
+\hyphenation{va-ló-szí-nű-ség-gel}
+
+\begin{document}
+\maketitle
+
+\end{document}

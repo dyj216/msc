@@ -1,0 +1,258 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{t1enc}
+\usepackage{lmodern}
+\usepackage{indentfirst}
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{hyphenat}
+\usepackage[magyar]{babel}
+
+\sloppy
+\frenchspacing
+\setlength{\parskip}{\smallskipamount}
+
+\title{Sztochasztikus folyamatok 2015-06-06 vizsga}
+
+\hyphenation{va-ló-szí-nű-ség-gel}
+
+\begin{document}
+\maketitle
+
+Figyelem! Természetesen a kidolgozás elolvasása nem ment fel a készülés
+alól. Csak azoknak tud érdemben segítséget nyújtani, akik egyébként is
+készültek. A feladatok helyességére semmilyen garanciát nem vállalok!
+Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás
+elérhető az \url{https://github.com/dyj216/msc-sze-vill} címen.
+
+A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
+\texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre vannak hivatkozások 
+ebben a kidolgozásban is. Ezek elérhetőek a 
+\url{http://www.sze.hu/~harmati/sztocha2.html} címen.
+
+Ezt a vizsgasort emlékezetből írtam meg, a feladatok megfogalmazása
+biztosan nem pontos.
+
+\section*{1. feladat}
+Szerencsejátékot játszok, 0,49 valószínűséggel nyerem el ellenfelem 
+pénzét, ő 0,51-gyel nyeri el az én pénzemet. 200 Ft-om van,
+ellenfelemnek 40.
+
+(a) Milyen tét megválasztásával tudom maximalizálni a nyerési 
+esélyemet?
+
+(b) Mennyi a valószínűsége annak, hogy nyerek ilyen tétek mellett, 
+mennyi annak, hogy vesztek?
+
+(c) Ha ellenfelemnek megengedem, hogy ő választhasson tétet, 
+akkor ő mekkora tétet fog választani?
+
+(d) Ha végtelen pénzem van, meddig növelhetem a nyerési esélyemet?
+
+\subsection*{a)}
+Ha a játék nem nekünk kedvez (de nekünk van több pénzünk), akkor
+a lehető legnagyobb tét kiválasztásával tudjuk a nyerési esélyünket
+maximalizálni. Ez 40 Ft.
+
+\subsection*{b)}
+Annak az esélye, hogy nyerek 40 Ft-os tét mellett 
+($n_1 = 200/40 = 5, \ n_2 = 40/40 = 1$):
+
+\[
+P(\textrm{nyerek}) = 
+\frac{1 - \left( \frac{1-p}{p} \right)^{n_1}}
+{1 - \left( \frac{1-p}{p} \right)^{n_1 + n_2}} = 
+\frac{1 - \left( \frac{0,51}{0,49} \right)^{5}}
+{1 - \left( \frac{0,51}{0,49} \right)^{6}} \approx ...
+\]
+
+Annak a valószínűsége, hogy vesztünk:
+
+\[
+P(\textrm{vesztek}) = 1 - P(\textrm{nyerek}) = ...
+\]
+
+\subsection*{c)}
+Ellenfelemnek kedvez a játék, így neki a lehető legkisebb tétet kell
+választania, hogy maximalizálja a nyerési esélyét. 
+Ekkor $n_1 = 200$, $n_2 = 40$, és az én nyerési esélyem:
+
+\[
+P(\textrm{nyerek}) = 
+\frac{1 - \left( \frac{1-p}{p} \right)^{n_1}}
+{1 - \left( \frac{1-p}{p} \right)^{n_1 + n_2}} = 
+\frac{1 - \left( \frac{0,51}{0,49} \right)^{200}}
+{1 - \left( \frac{0,51}{0,49} \right)^{240}} \approx ...
+\]
+
+\subsection*{d)}
+1 kört inkább elvesztünk, mint megnyerünk ($p < q$), ellenfelünk pénze
+konstans ($n_2 = 5$), így alkalmazhatjuk a következő határérték számítást:
+
+\[
+\begin{split}
+P(\text{nyerünk}) &= 
+\lim_{n_1 \to \infty} \frac{1-\left(\frac{1-p}{p}\right)^{n_1}}
+{1-\left(\frac{1-p}{p}\right)^{n_1+n_2}} =
+\lim_{n_1 \to \infty} \frac{1-\left(\frac{1-p}{p}\right)^{n_1}}
+{1-\left(\frac{1-p}{p}\right)^{n_1}\left(\frac{1-p}{p}\right)^{n_2}} =\\
+&= \lim_{n_1 \to \infty} \frac{\left(\frac{1-p}{p}\right)^{n_1}}
+{\left(\frac{1-p}{p}\right)^{n_1}} \cdot 
+\frac{\frac{1}{\left(\frac{1-p}{p}\right)^{n_1}}-1}
+{\frac{1}{\left(\frac{1-p}{p}\right)^{n_1}} -
+\left(\frac{1-p}{p}\right)^{n_2}} 
+= \frac{-1}{-\left(\frac{1-p}{p}\right)^{n_2}} =\\
+&= \left(\frac{p}{1-p}\right)^{n_2} = 
+\left(\frac{0,49}{0,51}\right)^{40} \approx ...
+\end{split}
+\]
+
+\section*{2.feladat}
+Adott az $\{1, 2\}$ állapotokkal rendelkező Markov-lánc 
+az alábbi állapotvalószínűségi mátrixszal:
+
+\[
+p = 
+\begin{bmatrix} 
+0,2    &    0,8 \\
+0,4    &    0,6
+\end{bmatrix}
+\]
+
+(a) Adja meg a $P(X_1 = 1 \mid X_0 = 2)$ valószínűséget!
+
+(b) Adja meg a $P(X_4 = 2 \mid X_2 = 2)$ valószínűséget!
+
+(c) Adja meg az invariáns eloszlást!
+
+\subsection*{Bevezető}
+Az (a) és (b) jellegű kérdésekre borzasztóan egyszerű a válasz:
+meg kell nézni, hogy a keresett valószínűség az  melyik időpillanatban 
+(lépésben) van, ezt $X$ alsó indexéből leolvashatjuk ((a) esetben ez 1,
+(b) esetben ez 4). 
+Ebből le kell vonni a feltétel időpillanatának (lépésének) az értékét 
+((a) esetben ez 0, (b) esetben ez 2), tehát $1-0=1$ és $4-2=2$, és a 
+$P$ mátrix ennyiedik hatványát kell megnézni
+((a) esetben $P^1$-et, (b) esetben $P^2$-t). A sorok jelölik az, hogy 
+melyik állapotban vagyunk, az oszlopok, hogy melyik állapotba megyünk.
+
+\subsection*{a)}
+Tekintsük tehát a $P^1$ mátrixot:
+
+\[
+P = 
+\bordermatrix{
+~	&	1	&	2	\cr
+1	&	0,2	&	0,6	\cr
+2	&	0,4	&	0,8}
+\]
+
+A keresett valószínűség ennek a mátrixnak az első sorának második eleme.
+
+\[
+P(X_1 = 1 \mid X_0 = 2) = 0,6
+\]
+
+\subsection*{b)}
+Mivel itt a különbség a két időpont között 2, ezért ki kell számolni a 
+$P^2$ mátrixot. Akinek a számológépe tudja ezt az csak bepötyögi és 
+lemásolja az eredményt,  többiek kézzel kiszámolják.
+
+\[
+P^2 = 
+\bordermatrix{
+~	&	1	    &	2    	\cr
+1	&	0,36	&	0,62	\cr
+2	&	0,34	&	0,68}
+\]
+
+Innen a keresett valószínűség az ennek a mátrixnak a második sorának
+második eleme.
+
+\[
+P(X_4 = 2 \mid X_2 = 2) = 0,68
+\]
+
+\subsection*{c)}
+Ez a rész egy sima invariáns eloszlás (jelölése: $\underline{\pi}$, 
+mert egy vektor) számolás. Az invariáns eloszlás 
+az azt jelenti, hogy ha $P$ kitevője már elég magas, akkor a kezdeti
+eloszlás elveszti jelentőségét ($\varphi_0$-val szoktuk jelölni, ebben a
+feladatban nem szerepel). Tehát:
+
+\[
+\lim_{n\to \infty} \varphi_0 P^n = \underline{\pi}
+\] 
+
+Ebből következik, hogy a magas kitevőjű $P$-t $\underline{\pi}$-vel
+megszorozva $\underline{\pi}$-t kapunk:
+
+\[
+\underline{\pi} = \lim_{n\to \infty} \varphi_0 P^n = 
+\lim_{n\to \infty} \varphi_0 P^{n+1} = 
+\lim_{n\to \infty} \varphi_0 P^n P = \underline{\pi} P
+\]
+
+\[
+\underline{\pi} = \underline{\pi} P
+\]
+
+Invariáns eloszlást a mátrix oszlopaiból felírt
+egyenletrendszerrel lehet számolni. $\pi_1$ az egyes állapot invariáns
+eloszlása $\pi_2$ a kettes állapoté. Ez az egyenletrendszer, tudva, hogy 
+az invariáns eloszlások összege 1-et ad eredményül:
+
+
+\begin{eqnarray*}
+\pi_1 = 0,2 \pi_1 + 0,6 \pi_2 \\
+\pi_2 = 0,4 \pi_1 + 0,8 \pi_2 \\
+\sum_i \pi_i = 1 = \pi_1 + \pi_2
+\end{eqnarray*}
+
+Ezt az egyenletrendszert megoldva kapjuk az invariáns eloszlás 
+értékeket, amit mátrix számolás képes számológéppel könnyen
+ellenőrizhetünk, úgy, hogy a mátrixunkat sokszor 
+(mondjuk 5--10-szer négyzetre emeljük):
+
+\[
+\pi_1 = \frac{1}{3},\quad \pi_2 = \frac{2}{3}
+\]
+
+\section*{3. feladat}
+Adott két doboz $A$ és $B$, és 8 golyó: 6 fehér és 2 sárga. Egy lépés
+jelentse azt, hogy megfogunk $A$-ban és $B$-ben is egy--egy golyót és
+kicseréljük őket. Jelölje az állapotokat az $A$-ban lévő sárga golyók
+száma.
+
+(a) Írja fel az állapotvalószínűségi mátrixot!
+
+(b) ??? Talán az volt, hogy adja meg az invariáns eloszlást?
+
+\subsection*{a)}
+Ha megértjük, hogy miket jelentenek az állapotok, ez a feladat is
+könnyű lesz. Most az állapotaink lehetnek $\{0, 1, 2\}$, hiszen
+ennyi sárga golyó lehet maximálisan az $A$-ban. A mátrix:
+
+\[
+P = 
+\bordermatrix{
+~	&	0    &    1      &	    2	\cr
+0	&	1/2  &    1/2    &	    0	\cr
+1	
+&	(1/4 \cdot 3/4 = 3/16)
+&	10/16
+&   (1/4 \cdot 3/4 = 3/16)   \cr
+2	&	0    &    1/2    &      1/2}
+\]
+
+Egy kis magyarázat: 
+\itemize
+\item Amikor 0 db sárga golyó van az $A$-ban, akkor
+1 a valószínűsége annak, hogy az $A$-ból fehéret veszünk ki, és
+$1/2$ annak a valószínűsége, hogy a $B$-ből fehéret veszünk ki, 
+ez adja a mátrix $(0, 0)$ elemét. 
+\item Szintén $1/2$ annak a valószínűsége,
+hogy sárgát veszünk ki a $B$-ből, ez a mátrix $(0, 1)$-es elemét adja.
+
+\end{document}
