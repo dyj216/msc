@@ -1,0 +1,213 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{indentfirst}
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{hyphenat}
+\usepackage[magyar]{babel}
+
+\sloppy
+\frenchspacing
+\setlength{\parskip}{\smallskipamount}
+
+\title{Sztochasztikus folyamatok 2015-06-06 vizsga}
+
+\hyphenation{va-ló-szí-nű-ség-gel}
+
+\begin{document}
+\maketitle
+
+Figyelem! Természetesen a kidolgozás elolvasása nem ment fel a készülés
+alól. Csak azoknak tud érdemben segítséget nyújtani, akik egyébként is
+készültek. A feladatok helyességére semmilyen garanciát nem vállalok!
+Ha hibát találsz benne, akkor jelezd, vagy javítsd ki. A \LaTeX\ forrás és 
+a \texttt{.pdf} elérhető az \url{https://github.com/dyj216/msc-sze-vill} 
+címen. A fájlokat a ,,Raw'' gombra való kattintással lehet letölteni.
+
+A felkészüléshez ajánlom a tanár úr honlapján megtalálható 
+\texttt{\mbox{sztocha\_01.pdf}--\mbox{sztocha\_08.pdf}}-eket. Ezekre vannak hivatkozások 
+ebben a kidolgozásban is. Ezek elérhetőek a 
+\url{http://www.sze.hu/~harmati/sztocha2.html} címen. A vizsgákon a 
+feladattípusok ugyanazt a sémát követik, minden feladat egy--egy 
+anyagrészre kérdez rá, természetesen a pontos feladattípusok vizsgáról
+vizsgára változnak.
+
+\section*{1. feladat}
+Egy bolha ugrál az $1,2,\dots,40$ számokon. Ha a $2,3,\dots39$ számok valamelyikén van, akkor $1/2$ valószínűséggel lép jobbra, $1/2$ valószínűséggel lép balra, de ha 1-ben vagy 40-ben van, ott is marad. (a falak elnyelőek).
+
+a)	TFH 36-ból elindul. Mi a VSZ-e, hogy 1-ben végzi? (4p)
+
+b)	TFH 14-ből indul. Várhatóan hány lépés múlva fejeződik be a bolyongása? (4p)
+
+\subsection*{a)}
+A bolyongás elnyelő falakkal megegyezik a tönkremenési problémával. Mivel 
+$p = 1 - p = 1/2$, ezért $P = n/A$.
+
+(Ebben nem vagyok biztos) Mivel most $1$ az elnyelő állapot, ezért $A=39$, 
+és $n$ az a közelebbi elnyelő
+állapottól való távolság: $n = 4$. Így a kérdésre a válasz:
+
+\[
+P(\textrm{a bolha 1-ben végzi}) = \frac{n}{A} = \frac{4}{39} \approx 0,1026 
+\]
+
+\subsection*{b)} 
+A bolyongás várható időtartama $p = 1-p = 1/2$ esetén: $d(n) = n(A-n)$.
+Most $n = 13$, $A = 39$.
+
+\[
+d(n) = 13 \cdot (39-13) = 338 
+\]
+
+\section*{2. feladat}
+Egy Markov-lánc állapottere: $S = \{1, 2, 3, 4, 5\}$, átmenet-valószínűség mátrixa:
+
+\[
+P = 
+\begin{bmatrix} 
+0    &    1/4    &    1/4    &    1/4    &    1/4 \\
+0    &    0      &    0      &    1/2    &    1/2 \\
+0    &    0      &    0      &    1/2    &    1/2 \\
+1/2    &    1/2      &    0      &    0    &    0 \\
+1/2    &    0      &    0      &    0    &    1/2
+\end{bmatrix}
+\]
+
+a)	Irreducibilis-e a Markov-lánc? (3p)
+
+b)	Határozzuk meg az invariáns eloszlást! (5p)
+
+c)	Tegyük fel, hogy 1-ből indulunk. Várhatóan hány lépés múlva érünk ismét 1-be? (3p)
+
+\subsection*{a)}
+Irreducibilis a Markov-lánc, hiszen egyetlen rekurrens osztályból áll, ami azt
+jelenti, hogy bármely állapotból elérhető bármely másik állapot. Ez az egy 
+rekurrens osztály az $\{1, 2, 3, 4, 5\}$.
+
+\subsection*{b)}
+Egyszerű invariáns eloszlás számolás, segítségképpen a mátrix, oldalain 
+feltüntetve az állapotokkal:
+
+\[
+P = 
+\bordermatrix{
+~	&	1	&	2     &    3    &    4    &    5 	\cr
+1	&	0	&	1/4   &    1/4  &    1/4  &    1/4  \cr
+2	&	0	&	0     &    0    &    1/2  &    1/2  \cr
+3	&	0	&	0     &    0    &    1/2  &    1/2  \cr
+4	&	1/2	&	1/2   &    0    &    0    &    0    \cr
+5	&	1/2	&	00    &    0    &    0    &    1/2}
+\]
+
+Az oszlopokba kell belenézni az invariáns eloszlás egyenletrendszerének
+felírásához:
+
+\begin{align*}
+\pi_1 &= 1/2 \pi_4 + 1/2 \pi_5 \\
+\pi_2 &= 1/4 \pi_1 + 1/2 \pi_4 \\
+\pi_3 &= 1/4 \pi_1             \\
+\pi_4 &= 1/4 \pi_1 + 1/2 \pi_2 + 1/2 \pi_3 \\
+\pi_5 &= 1/4 \pi_1 + 1/2 \pi_2 + 1/2 \pi_3 + 1/2 \pi_5 \\
+\sum_i \pi_i = 1 &= \pi_1 + \pi_2 + \pi_3 + \pi_4 + \pi_5
+\end{align*}
+
+Megoldva az egyenletrendszert (természetesen lehet egyszerűsíteni, 
+ilyen formában viszont jól látszik, hogy az összegük 1-et ad):
+
+\[
+\pi_1 = \frac{12}{46}, \quad
+\pi_2 = \frac{7}{46}, \quad
+\pi_3 = \frac{3}{46}, \quad
+\pi_4 = \frac{8}{46}, \quad
+\pi_5 = \frac{16}{46}
+\]
+
+\subsection*{c)}
+Az invariáns eloszlás ismeretében ez könnyű:
+
+\[
+E(T_{1 \to 1}) = \frac{1}{\pi_1} = \frac{46}{12} = \frac{23}{6}
+\]
+
+\section*{3. feladat}
+Két dobozban ($A$ és $B$) 3-3 golyó van, összesen 3 fehér és 3 piros. 
+Egy lépés abból fog állni, hogy $A$-ból és $B$-ből is kihúzunk egy-egy 
+golyót, és kicseréljük őket. Tekintsük a piros golyók számát az $A$
+dobozban.
+
+a)	Írjuk fel az átmenet-valószínűség mátrixot! (5p)
+
+b)	Hosszú távon az idő hányad részében nem lesz piros golyó az $A$-ban? (5p)
+
+c)	Tegyük fel, hogy kezdetben minden piros golyó $A$-ban volt. 
+Várhatóan hány lépés múlva lesz benne csak fehér? (5p)
+
+\subsection*{a)}
+Az piros golyók száma az $A$ dobozban az alábbi értékeket vehetik fel:
+$\{0, 1, 2, 3\}$. Ennek megfelelően az átmenet-valószínűségmátrix:
+
+\[
+P = 
+\bordermatrix{
+~	&	0    &    1    &    2    &    3    \cr
+0	&	0    &    1    &    0    &    0    \cr
+1	&	1/3 \cdot 1/3 = 1/9    &    4/9    &    2/3 \cdot 2/3 = 4/9    &    0    \cr
+2	&	0    &    4/9    &    4/9    &    1/9    \cr
+3	&	0    &    0    &    1    &    0    }
+\]
+
+Ha 1 golyó piros $A$-ban, akkor úgy lehet, benne 0, ha a 3 golyóból 
+egyedüli pirosat kivesszük, és kicseréljük a 3 golyóból 1 fehérrel 
+a $B$-ből. Ahhoz, hogy kettő piros golyó legyen az $A$-ban, ahhoz a 3 
+golyóból a kettő fehér közül az egyiket kell kihúzni, aminek $2/3$-ad 
+a valószínűsége, és a $B$-ből a 3 golyó közül a 2 piros egyikét kell
+kihúzni, ennek a valószínűsége is $2/3$, így kapjuk a kettő szorzatából
+a $4/9$-es valószínűséget. Az $1 \to 1$ átmenethez 1-ből kivonjuk az 
+adott sorban lévő többi valószínűséget (vagy végiggondoljuk).
+
+\subsection*{b)}
+Ehhez invariáns eloszlást kell számolni. A keresett érték:
+
+\[P(\textrm{nincs a 0 állapotban}) = 1 - \pi_0\]
+
+Az invariáns eloszláshoz az egyenletrendszer:
+
+\begin{align*}
+\pi_0 &= 1/9 \pi_1 \\
+\pi_1 &= \pi_0 + 4/9 \pi_1 + 4/9 \pi_2 \\
+\pi_2 &= 4/9 \pi_1 + 4/9 \pi_2 + \pi_3             \\
+\pi_3 &= 1/9 \pi_2 \\
+\sum_i \pi_i = 1 &= \pi_0 + \pi_1 + \pi_2 + \pi_3
+\end{align*}
+
+\section*{4. feladat}
+Egy boltba Poisson-folyamat szerint érkeznek a vevők, átlagosan két 
+percenként egy.
+
+a)	Mi a valószínűsége, hogy 10 perc alatt pont 4 vevő érkezik? (3p)
+
+b)	Öt percig nem jött senki. Mi a VSZ-e, hogy a következő percben 
+pont két vevő jön? (3p)
+
+c)	Tegyük fel, hogy 10 perc alatt 8-an jöttek. Mi a valószínűsége, 
+hogy az első 2 percben nem jött senki? (4p)
+
+\section*{5. feladat}
+Egy hivatalnál egyetlen ablaknál intézik az ügyeket. A kiszolgálási 
+idő exponenciális eloszlású 10 perc várható értékkel. Az ügyfelek 
+Poisson-folyamat szerint érkeznek, óránként átlagosan 5. Tegyük fel, hogy 
+a hivatal befogadóképessége végtelen.
+
+a)	Mi a valószínűsége, hogy legalább 2 ügyfél van a hivatalban? (4p)
+
+b)	Átlagosan hányan várakoznak a hivatalban?(4p)
+
+c)	Átlagosan mennyi időt tölt el egy ügyfél a hivatalban? (4p)
+
+d)	Mennyi az átlagos várakozási idő? (4p)
+
+
+\end{document}
