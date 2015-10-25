@@ -1,0 +1,71 @@
+\documentclass[french,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{indentfirst}
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{hyphenat}
+\usepackage[a4paper]{geometry}
+\usepackage[magyar]{babel}
+\author{Endreffy Zsolt}
+\title{Near Field Communication}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{Bevezetés}
+Napjainkban egyre többször lehet találkozni a legkülönfélébb alkalmazási 
+területeken a \textit{Near Field Communicationnel}, avagy az \textit{NFC}-vel.
+De mi is ez a technológia, mi a története és hogyan is működik?
+
+\section{A közeltér-távoltér különbségéről}
+
+\subsection{A régiók rövid összefoglalása}
+Ahogy a közeltér neve is sugallja, elsősorban az antennához közeli távolságban
+beszélhetünk róla, míg távoltér esetén értelemszerűen a messzebb eső 
+távolságokban. A kettő határa azonban csak homályosan van definiálva, amely
+ráadásul még a forrás által sugárzott domináns hullámhossztól is függ.
+
+A távoltérben a sugárzás elektromos és mágneses térereje a 
+távolság négyzetével fordítottan arányos, 
+míg a közeltérben még ennél is gyorsabban csökken, a távolság négyzetével illetve 
+harmadik hatványával fordítottan arányosan.
+Míg a távoltérben az elnyelődés nem hat vissza az adóra, addig a közeltérben az 
+elnyelődés megváltoztatja az adó terhelését. Ennek a jelenségnek egy egyszerű
+modellje a például transzformátorokban megfigyelhető mágneses indukció.
+
+Az elektromágneses mezőben az elektromos és mágneses mező a távoltér esetén kapcsolatban
+állnak és a kettejük intenzitásának arányát a hullámimpedancia adja meg. 
+Ezzel ellentétben a közeltérben a két mező egymástól függetlenül létezhet, és
+az egyik teljesen el tudja nyomni a másikat.
+
+Egy antennában a pozitív és negatív töltések nem hagyhatják el az antennát és a 
+gerjesztő jel által elválasztva, annak megfelelően oszcilláló elektromos dipólust
+alkotnak, ami mind a közeltérben, mind a távoltérben hatást fejt ki. Az antennák
+többnyire arra lettek kitalálva, hogy nagy távolságú vezetéknélküli kommunikációt
+lehessen velük folytatni, és ezeknek az antennáknak ez a régió a normális működési
+tartományuk. Természetesen a közeltér antennákat is egyre gyakrabban használjuk
+adatátvitelre, hiszen az \textit{NFC} is ennek a képviselője.
+
+A kettő régió között van az átmeneti zóna, amely az antenna geometriájától és a 
+hullámhossz hosszától függ.
+
+\subsection{Definíciók}
+
+
+
+\section[NFC]{NFC, avagy Near Field Communication}
+
+
+\section{Az NFC és egyéb vezetéknélküli technológiák}
+
+\end{document}
