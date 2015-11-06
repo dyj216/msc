@@ -1,4 +1,4 @@
-\documentclass[french,12pt]{article}
+\documentclass[12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -24,23 +24,59 @@
 
 \section{Bevezetés}
 Napjainkban egyre többször lehet találkozni a legkülönfélébb alkalmazási 
-területeken a \textit{Near Field Communicationnel}, avagy az \textit{NFC}-vel.
-De mi is ez a technológia, mi a története és hogyan is működik?
+területeken a \emph{Field Communicationnel}, avagy az \emph{NFC}-vel.
+Főként mobiltelefonokba beépítve nyer egyre nagyobb teret ez a technológia,
+hiszen itt tudják a szolgáltatók a technológiát (fizetős) szolgáltatásokkal
+összekötni.
+De mi is ez a technológia, és hogyan is működik?
 
 \section{A közeltér-távoltér különbségéről}
 
 \subsection{A régiók rövid összefoglalása}
 Ahogy a közeltér neve is sugallja, elsősorban az antennához közeli távolságban
 beszélhetünk róla, míg távoltér esetén értelemszerűen a messzebb eső 
-távolságokban. A kettő határa azonban csak homályosan van definiálva, amely
+távolságokban. A kettő határa azonban nincs konkrétan megszabva, mert az
 ráadásul még a forrás által sugárzott domináns hullámhossztól is függ.
 
+Ha megvizsgáljuk a Hertz-dipólusra, mint elemi antennára felírható egyenleteket,
+akkor sok hasznos tanulságot levonhatunk a közel- és távoltér különbségéről.
+
+A gömbkoordináta rendszerben kifejezett $\mathbf{E}$ és $\mathbf{H}$ térerősségek:
+
+\begin{equation}
+H_{\phi} = j \frac{I \delta l}{4 \pi}
+\left( \frac{k}{r} - \frac{i}{r^2} \right)
+e^{-jkr} \sin \theta
+\end{equation}
+
+\begin{equation}
+E_{\theta} = j \frac{Z_0 I \delta l}{4 \pi}
+\left( \frac{k}{r} - \frac{i}{r^2} -\frac{1}{kr^3}\right)
+e^{-jkr} \sin \theta
+\end{equation}
+
+\begin{equation}
+E_{r} = j \frac{Z_0 I \delta l}{2 \pi}
+\left( \frac{k}{r} - \frac{i}{kr^3}\right)
+e^{-jkr} \cos \theta
+\end{equation}
+ahol a 
+\begin{itemize}
+\item $Z_0 = \sqrt{{\mu_0}/{\epsilon_0}}$ a hullámimpedancia,
+\item $r, \theta$ és  $\phi$ a gömbkoordináta rendszer paraméterei,
+\item $I$ az áramerősség,
+\item $\delta l$ az antenna infinitezimálisan kicsi hossza
+\end{itemize} 
+
+A távoltérben az ${1}/{r^2}$-tel és ${1}/{r^3}$-bel arányos tagok
+gyorsan csökkennek, és az ${1}/{r}$-rel arányos tag marad a domináns.
+
 A távoltérben a sugárzás elektromos és mágneses térereje a 
-távolság négyzetével fordítottan arányos, 
-míg a közeltérben még ennél is gyorsabban csökken, a távolság négyzetével illetve 
-harmadik hatványával fordítottan arányosan.
-Míg a távoltérben az elnyelődés nem hat vissza az adóra, addig a közeltérben az 
-elnyelődés megváltoztatja az adó terhelését. Ennek a jelenségnek egy egyszerű
+távolsággal fordítottan arányos, 
+míg a közeltérben még az ennél sokkal gyorsabban csökkenő, a távolság négyzetével illetve 
+harmadik hatványával fordítottan arányosan tagok dominálnak.
+Míg a távoltérben az elnyelődés nem hat vissza az adóra, addig a közeltérben a sugárzás
+elnyelődése megváltoztatja az adó terhelését. Ennek a jelenségnek egy egyszerű
 modellje a például transzformátorokban megfigyelhető mágneses indukció.
 
 Az elektromágneses mezőben az elektromos és mágneses mező a távoltér esetén kapcsolatban
@@ -54,17 +90,159 @@ alkotnak, ami mind a közeltérben, mind a távoltérben hatást fejt ki. Az ant
 többnyire arra lettek kitalálva, hogy nagy távolságú vezetéknélküli kommunikációt
 lehessen velük folytatni, és ezeknek az antennáknak ez a régió a normális működési
 tartományuk. Természetesen a közeltér antennákat is egyre gyakrabban használjuk
-adatátvitelre, hiszen az \textit{NFC} is ennek a képviselője.
+adatátvitelre, hiszen az \emph{NFC} is ennek a képviselője.
 
 A kettő régió között van az átmeneti zóna, amely az antenna geometriájától és a 
 hullámhossz hosszától függ.
 
 \subsection{Definíciók}
+A közeltér-távoltér szóhasználatnál nagyon fontos, hogy tisztázzuk a pontos
+definíciókat, hiszen az egyes felhasználási területektől függően különböző
+jelentést hordozhatnak. Itt most az elektromágneses hosszúság szerinti bontás
+definíciói fontosak számunkra.
 
+\subsubsection{Elektromágnesesen rövid antennák}
+Ezek azok az antennák, amelyek rövidebbek, mint az általuk kibocsájtott hullámhossz
+hosszának a fele. Ezeknél az antennáknál a közeltér-távoltér különbségtételt egyszerűen
+a sugárzó forrástól való távolság ($r$) és a hullámhossz ($\lambda$) aránya adja meg.
+Az ilyen antennáknál közeltérnek hívjuk, ha $ r \ll \lambda $ és távoltérnek, ha $ r \gg 2\lambda $.
+A kettő közötti távolságot átmeneti zónának nevezzük.
 
+Érdemes megemlíteni, hogy az antenna hossza nem fontos, és ez a becslés működik minden
+rövidebb antennára is (ideális esetekben pontantennáknak is hívják őket).
+
+\subsubsection{Elektromágnesesen hosszú antennák}
+Azoknál az antennáknál, amelyeknek a fizikai hossza nagyobb, mint az általuk sugárzott
+hullámhossz fele, azoknál a közel- és távoltér régiók határának a meghatározására a 
+Frauenhofer távolságot használják. Ennek értékét a:
+
+\begin{equation}
+d_f = \frac{2D^2}{\lambda}
+\end{equation}
+
+egyenlet adja meg, ahol a
+\begin{itemize}
+\item $D$ a legnagyobb mérete az antennának (pl. tányérantennáknál az átmérő),
+\item $\lambda$ a rádióhullám hullámhossza.
+\end{itemize} 
+
+Az ilyen elektromágnesesen hosszúnak tekinthető antennák jelentősen megnövelik a
+közeltér hatásokat. Másik szemszögből vizsgálva, ha egy adott antenna nagy 
+frekvenciájú sugárzást bocsájt ki, akkor nagyobb lesz a közeltér régiója, ami a
+rövidebb hullámhossznak köszönhető.
 
 \section[NFC]{NFC, avagy Near Field Communication}
+Az NFC technológia, mint ahogy a neve is mutatja a közeltér felhsználásával
+megvalósított vezeték nélküli kommunikációs protokoll. Közvetlen elődjének az
+RFID (Radio Frequency Identification) tekinthető, de sokban eltér tőle. A 
+kettejük különbségeit és hasonlóságait egy későbbi fejezetben tárgyalom.
+Az NFC olyan vezeték nélküli technológia, amely kis sávszélesség mellett
+nagy frekvencián nyújt adatátvitelt, néhány centiméteres távolságban.
 
+\subsection{Specifikáció összefoglalás}
+\begin{itemize}
+\item Az NFC mágneses mező indukálásával kommunikál kettő hurokantenna között,
+amelyek egymás közelterében  helyezkednek el, ezzel egy levegőmagos
+transzformátort hozva létre. A globálisan, engedély nélkül igénybe vehető 
+13,56 MHz-en működik akár 1,8 Mhz-es sávszélességgel.
+\item A működési távolságának a maximuma 10 cm körül alakul.
+\item Támogatott átviteli adatsebességek: 106, 212 vagy 424 kbit/s.
+\item Kétféle működési mód létezik:
+\begin{itemize}
+\item Passzív kommunikációs mód: A kezdeményező fél hozza létre a vivő mezőt, és a
+cél eszköz ezt a mezőt modulálva válaszol. Ebben a módban a céleszköz a 
+működéséhez szükséges energiát a kezdeményező által létrehozott elektromágneses
+mezőből nyeri.
+\item Aktív kommunikációs mód: Mind a kezdeményező, mind a céleszköz az általuk
+felváltva keltett mezővel kommunikálnak. Amennyiben adatra vár az egyik eszköz,
+annyiban kikapcsolja a saját mezejét. Ebben a működési módban mindkét eszköznek
+rendelkeznie kell saját energiaellátással.
+\end{itemize}
+\item Az NFC kétféle kódolást használ adattovábbításra. Ha egy aktív eszköz 
+106 kbit/s melletti adattovábbítást végez, akkor 100\%-os moduláció mellett
+módosított Miller kódolást alkalmaz. Minden más esetben Manchester kódolást
+használ 10\%-os modulációs arány mellett.
+\item Az NFC-s eszközök képesek adatot egyszerre fogadni és továbbítani is. 
+\end{itemize}
+
+\subsection{Frekvenciasáv és sebesség}
+Az NFC a 13,56-os ISM (Industrial, Scientific and Medical: ipari, tudományos
+és orvosi) frakvenciát használja. A rádiófrekvenciás energia nagy része a 
+$\pm 7$ kHz-es engedélyezett sávban koncentrálódik, de a teljes spektrális 
+kiterjedés akár 1,8 Mhz is lehet ASK moduláció használata esetén.
+
+A sebesség 106, 212 és 424 kbit/s-os sebessége alacsonynak tűnhet a mai egyéb
+vezetéknélküli technológiákhoz képest, mint amilyen a Bluetooth, vagy a Wi-fi.
+Ez is azt mutatja, hogy az adatátvitel sebessége nem volt elsődleges elsődleges
+a tervezésnél. Ellenben nagyon kényelmesen és gyorsan képes a kapcsolat
+felépítésére.
+
+\subsection{Kommunikációs módok}
+Az NFC interfész aktív vagy passzív módban tud működni. Az aktív eszköz saját
+mezőt hoz létre, míg a passzív módban működő eszköznek az induktív csatolást
+kell felhasználnia az adattovábbításra. Tehát a passzív módban működő eszközöknek
+nem kell belső energiaforrással rendelkezniük, illetve az akkumulátorral működő
+eszközöknek, mint amilyenek a mobiltelefonok, érdemes ezt a módot használniuk, 
+amennyiben a másik oldal képes aktív módban működni. A passzív módban működő
+eszköz az aktív eszköz mezejének terhelésmodulációját használja az
+adattovábbításra. Így az eszköz alkalmas kártya emulációra, például 
+jegykezelő rendszerekben való felhasználásra,akár  akkor is, amikor a mobiltelefon
+ki van kapcsolva.
+
+Összefoglalva tehát aktív a kommunikációs mód, ha két aktív eszköz kommunikál 
+egymással. Mindig az az eszköz hozza létre a saját mezejét, amelyik adatot
+szeretne küldeni. A két eszköz felváltva hozza létre a teret.
+
+Passzív módnak azt nevezzük, amikor egy aktív eszköz és egy passzív eszköz között
+jön létre a kapcsolat. Az aktív eszköz hozza létre a rádiófrekvenciás mezőt.
+
+\subsection{Szerepek}
+Kétféle szerepet lehet megkülönböztetni NFC kommunikáció során. Kezdeményezőnek 
+(initiator) nevezzük azt, amelyik az első üzenetet küldi és célpontnak (target)
+a fogadó felet. Passzív eszköz nem kezdeményezhet adatcserét. A célpont addig 
+nem küldhet vissza választ, amíg a kezdeményező nem indítja el a kommunikációt.
+Egy kezdeményező több célponttal is felvehet kapcsolatot.
+
+\subsection{Összeütközés elkerülése}
+Általában ritkák a félreértések, hiszen az eszközöket közvetlen egymás mellé 
+szükséges helyezni. A protokoll egy egyszerű alapszabályt alkalmaz: hallgatás
+közlés előtt (listen before talk). Ha a kezdeményező kommunikálni szeretne,
+akkor biztosra kell mennie, hogy nincsen külső mező, amelyiket megzavarhat,
+vagy amelyik megzavarhatja az NFC kommunikációt. Egy pontosan meghatározott 
+ideig csöndben kell várakoznia a kezdeményezés előtt, miután idegen mezőt 
+érzékelt. Ha kettő vagy több eszköz pontosan ugyanakkor válaszol, akkor a
+kezdeményező érzékeli az összeütközést.
+
+\subsection{Kódolások}
+
+\subsubsection{Manchester kódolás}
+A Manchester kódolásnál a jel értéke a periódus közepén létrejövő váltás irányától
+függően vehet fel 0 vagy 1-es értéket. 0 bitet akkor vesz fel, amikor a jel
+alacsony szintről magas szintre vált, 1 bitet akkor, amikor a magas jelszintről
+alacsonyra vált. Ennek köszönhetően minden periódus közepén szintet vált a jel.
+A periódus elején fellépő változások nem játszanak szerepet.
+
+\subsubsection{Módosított Miller kódolás}
+A módosított Miller kódolásnál az 1 és 0 bitek értelmezése attól függ, hogy
+a jelben egy perióduson belül mikor megy végbe változás. Az egyes bitet
+mindig ugyanúgy kódoljuk: a perióduson belül a jelszint a második félperiódusban
+esik 0-szintre. A nullás bit kódolása függ attól, hogy milyen bit előzte meg.
+Amennyiben egyes bit előzte meg, annyiban végig magas jelszint jelenti a nullás
+bitet, amennyiben nulla előzte meg, annyiban egy olyan jelalak, amely az első
+félperiódusban veszi fel az alacsony jelszintet.
+
+\subsection{Biztonsági vonások}
+Először is fontos 
+
+\subsubsection{Lehallgatás}
+
+\subsubsection{Adattörlés}
+
+\subsubsection{Adatmódosítás}
+
+\subsubsection{Adatbeszúrás}
+
+\subsubsection{Man-in-the-Middle}
 
 \section{Az NFC és egyéb vezetéknélküli technológiák}
 
