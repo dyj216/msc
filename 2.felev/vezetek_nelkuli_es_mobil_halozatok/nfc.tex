@@ -36,7 +36,7 @@ De mi is ez a technológia, és hogyan is működik?
 Ahogy a közeltér neve is sugallja, elsősorban az antennához közeli távolságban
 beszélhetünk róla, míg távoltér esetén értelemszerűen a messzebb eső 
 távolságokban. A kettő határa azonban nincs konkrétan megszabva, mert az
-ráadásul még a forrás által sugárzott domináns hullámhossztól is függ.
+függ még a forrás által sugárzott domináns hullámhossztól is.
 
 Ha megvizsgáljuk a Hertz-dipólusra, mint elemi antennára felírható egyenleteket,
 akkor sok hasznos tanulságot levonhatunk a közel- és távoltér különbségéről.
@@ -98,7 +98,7 @@ hullámhossz hosszától függ.
 \subsection{Definíciók}
 A közeltér-távoltér szóhasználatnál nagyon fontos, hogy tisztázzuk a pontos
 definíciókat, hiszen az egyes felhasználási területektől függően különböző
-jelentést hordozhatnak. Itt most az elektromágneses hosszúság szerinti bontás
+jelentést hordozhatnak. Itt most az elektromágneses hosszúság szerinti különbségtétel
 definíciói fontosak számunkra.
 
 \subsubsection{Elektromágnesesen rövid antennák}
@@ -145,7 +145,8 @@ nagy frekvencián nyújt adatátvitelt, néhány centiméteres távolságban.
 amelyek egymás közelterében  helyezkednek el, ezzel egy levegőmagos
 transzformátort hozva létre. A globálisan, engedély nélkül igénybe vehető 
 13,56 MHz-en működik akár 1,8 Mhz-es sávszélességgel.
-\item A működési távolságának a maximuma 10 cm körül alakul.
+\item A működési távolságának a maximuma 10 cm körül alakul, de jellemzően ennél
+kisebb távolságokon alkalmazzák.
 \item Támogatott átviteli adatsebességek: 106, 212 vagy 424 kbit/s.
 \item Kétféle működési mód létezik:
 \begin{itemize}
@@ -154,7 +155,8 @@ cél eszköz ezt a mezőt modulálva válaszol. Ebben a módban a céleszköz a
 működéséhez szükséges energiát a kezdeményező által létrehozott elektromágneses
 mezőből nyeri.
 \item Aktív kommunikációs mód: Mind a kezdeményező, mind a céleszköz az általuk
-felváltva keltett mezővel kommunikálnak. Amennyiben adatra vár az egyik eszköz,
+felváltva keltett mezővel kommunikálnak egymással. 
+Amennyiben adatra vár az egyik eszköz,
 annyiban kikapcsolja a saját mezejét. Ebben a működési módban mindkét eszköznek
 rendelkeznie kell saját energiaellátással.
 \end{itemize}
@@ -167,11 +169,12 @@ használ 10\%-os modulációs arány mellett.
 
 \subsection{Frekvenciasáv és sebesség}
 Az NFC a 13,56-os ISM (Industrial, Scientific and Medical: ipari, tudományos
-és orvosi) frakvenciát használja. A rádiófrekvenciás energia nagy része a 
+és orvosi) frekvenciát használja. A rádiófrekvenciás energia nagy része a 
 $\pm 7$ kHz-es engedélyezett sávban koncentrálódik, de a teljes spektrális 
-kiterjedés akár 1,8 Mhz is lehet ASK moduláció használata esetén.
+kiterjedés akár 1,8 Mhz is lehet ASK (Amplitudo Shift Keying)
+moduláció használata esetén.
 
-A sebesség 106, 212 és 424 kbit/s-os sebessége alacsonynak tűnhet a mai egyéb
+A 106, 212 és 424 kbit/s-os sebessége alacsonynak tűnhet a mai egyéb
 vezetéknélküli technológiákhoz képest, mint amilyen a Bluetooth, vagy a Wi-fi.
 Ez is azt mutatja, hogy az adatátvitel sebessége nem volt elsődleges elsődleges
 a tervezésnél. Ellenben nagyon kényelmesen és gyorsan képes a kapcsolat
@@ -186,7 +189,7 @@ eszközöknek, mint amilyenek a mobiltelefonok, érdemes ezt a módot használni
 amennyiben a másik oldal képes aktív módban működni. A passzív módban működő
 eszköz az aktív eszköz mezejének terhelésmodulációját használja az
 adattovábbításra. Így az eszköz alkalmas kártya emulációra, például 
-jegykezelő rendszerekben való felhasználásra,akár  akkor is, amikor a mobiltelefon
+jegykezelő rendszerekben való felhasználásra, akár  akkor is, amikor a mobiltelefon
 ki van kapcsolva.
 
 Összefoglalva tehát aktív a kommunikációs mód, ha két aktív eszköz kommunikál 
@@ -198,17 +201,17 @@ jön létre a kapcsolat. Az aktív eszköz hozza létre a rádiófrekvenciás me
 
 \subsection{Szerepek}
 Kétféle szerepet lehet megkülönböztetni NFC kommunikáció során. Kezdeményezőnek 
-(initiator) nevezzük azt, amelyik az első üzenetet küldi és célpontnak (target)
+(initiator) nevezzük azt, amelyik az első üzenetet küldi, és célpontnak (target)
 a fogadó felet. Passzív eszköz nem kezdeményezhet adatcserét. A célpont addig 
 nem küldhet vissza választ, amíg a kezdeményező nem indítja el a kommunikációt.
 Egy kezdeményező több célponttal is felvehet kapcsolatot.
 
 \subsection{Összeütközés elkerülése}
 Általában ritkák a félreértések, hiszen az eszközöket közvetlen egymás mellé 
-szükséges helyezni. A protokoll egy egyszerű alapszabályt alkalmaz: hallgatás
-közlés előtt (listen before talk). Ha a kezdeményező kommunikálni szeretne,
+szükséges helyezni. A protokoll egy egyszerű alapszabályt alkalmaz: ,,hallgatás
+közlés előtt'' (listen before talk). Ha a kezdeményező kommunikálni szeretne,
 akkor biztosra kell mennie, hogy nincsen külső mező, amelyiket megzavarhat,
-vagy amelyik megzavarhatja az NFC kommunikációt. Egy pontosan meghatározott 
+vagy amelyik megzavarhatja az NFC kommunikációt. Egy meghatározott 
 ideig csöndben kell várakoznia a kezdeményezés előtt, miután idegen mezőt 
 érzékelt. Ha kettő vagy több eszköz pontosan ugyanakkor válaszol, akkor a
 kezdeményező érzékeli az összeütközést.
@@ -226,24 +229,92 @@ A periódus elején fellépő változások nem játszanak szerepet.
 A módosított Miller kódolásnál az 1 és 0 bitek értelmezése attól függ, hogy
 a jelben egy perióduson belül mikor megy végbe változás. Az egyes bitet
 mindig ugyanúgy kódoljuk: a perióduson belül a jelszint a második félperiódusban
-esik 0-szintre. A nullás bit kódolása függ attól, hogy milyen bit előzte meg.
+esik alacsony szintre. A nullás bit kódolása függ attól, hogy milyen bit előzte meg.
 Amennyiben egyes bit előzte meg, annyiban végig magas jelszint jelenti a nullás
 bitet, amennyiben nulla előzte meg, annyiban egy olyan jelalak, amely az első
 félperiódusban veszi fel az alacsony jelszintet.
 
 \subsection{Biztonsági vonások}
-Először is fontos 
+Először is fontos megjegyezni, hogy az alacsony működési távolság, amely az NFC-t
+jellemzi, annak ellenére nem biztosítja a biztonságos kommunikációt, hogy tudatos
+felhasználói interakciót igényel.
+
+Különböző lehetőségek állnak rendelkezésre az NFC technológia megtámadására.
+Egyrészről az eszközöket fizikailag is lehet manipulálni. Ez jelentheti az NFC
+tag (címke) eltávolítását, vagy fémfóliával bevonását, mellyel árnyékolni lehet
+a rádióhullámokat.
+
+Amennyiben egy tagen érzékeny információk találhatóak, annyiban a taget meg kell
+védeni a  jogtalan olvasástól és írástól. Természetesen a csak olvasható tagek
+védettek a jogtalan írás ellen.
+
+A hibaérzékelésre az NFC a ciklikus redundancia vizsgálatot (CRC) használja.
+Ezzel az eszköz képes érzékelni, hogy a megkapott adat sérült-e. 
+
+A továbbiakban különböző lehetséges NFC támadásokat fogok vizsgálni. A legtöbb
+ilyen támadásra létezik védekezési megoldás, amellyel csökkenteni, vagy akár 
+meg is lehet szüntetni a veszélyforrást. A következőkben nagyban támaszkodok
+Haselsteiner és Breitfuss: \emph{Security in Near Field Communication} művére. 
 
 \subsubsection{Lehallgatás}
+Az NFC, mint minden rádióhullámokat használó technológia, nem véd a lehallgatás
+ellen. A támadó a megfelelő antennával és tudással le tudja hallgatni a 
+vezetéknélküli kommunikációt. A legfőbb probléma a lehallgatás esetén az, 
+hogy közel kell lenni a kommunikáló eszközökhöz. Az, hogy mennyire közel kell
+lennie a támadónak a lehallgatáshoz sok paramétertől függ, mint az antenna 
+geometriája, a küldés energiaszintje, a támadó és dekódoló eszközök minősége, stb.
+Ezen felül érdemes kiemelni, hogy a lehallgatás távolsága nagyban függ a működés
+módjától is: aktív módban akár 10 méteres távolságból is le lehet hallgatni, 
+passzív módban pedig legfeljebb 1 méter lehet a lehallgatás távolsága.
+
+Ez ellen a biztonságos csatorna kiépítése az egyedüli védekezési technika, 
+amely sok más támadás ellen is egy lehetséges védekezési mód.
 
 \subsubsection{Adattörlés}
+Megfelelő közelben a támadó képes lehet az átvitt adat törlésére, érthetetlenné
+tételére. Ehhez szüksége van a moduláció és a kódolás ismeretére. Ezek ismeretében
+képes a vivőfrekvencián a megfelelő időben kiadott ellenkező fázisú kioltó jel
+kiadására. 
+Az adattörlés ellen aktív figyeléssel lehet védekezni, hiszen a jel elrontásához
+egy nagyságrenddel több energia szükséges.
 
 \subsubsection{Adatmódosítás}
+Az adattörléshez hasonlóan itt is a csatorna ellenőrzésével lehet észrevenni,
+ha valaki megváltoztatja a jelarányokat.
 
 \subsubsection{Adatbeszúrás}
+Ehhez arra van szükség, hogy a célpont eszköz lassan küldje ki a válaszát, 
+valamilyen okból kifolyólag. A támadó azelőtt küldhet extra információt, mielőtt
+az eredeti célpont átküldené a válaszát, de amint az eredeti célpont elindítja a
+választ, és a támadó még nem fejezte be az adat beszúrást, annyiban összeütközés
+jön létre, így a kezdeményező mindkettő választ eldobja.
 
 \subsubsection{Man-in-the-Middle}
+A klasszikus Man-in-the-Middle támadás esetében már akkor elbukhat
+a támadás, ha a beékelődő támadó zavarja a célpontnak küldött jelet, de az
+érzékeli a zavarást. Ha nem érzékeli, akkor is elbukhat később a támadás, 
+hiszen a válasz esetén mind a támadó, mind az eredeti célpont egyszerre válaszol,
+így a kezdeményező mindkettő üzenetet venni fogja és ütközés jön létre.
+Aktív módban amikor a kezdeményező lekapcsolja a mezejét, akkor a támadó szabadon
+küldhet, azonban ezt a jelet a kezdeményező is megkapja és a célpont válaszaként
+próbálja értelmezni. Haselsteiner és Breitfuss meg is jegyzik, hogy ezek alapján
+egy Man-in-the-Middle támadás sikerességének valószínűsége elhanyagolható.
+
+Más támadásokkal, mint az átjátszással, vagy féregjárattal kombinált támadás
+esetén viszont megnő a támadás sikerének valószínűsége.
 
 \section{Az NFC és egyéb vezetéknélküli technológiák}
+Az NFC korlátaival az egyszerű szemlélőnek feleslegesnek mutathatja a 
+technológiát a többi vezetéknélküli technológia fényében, de előnyei 
+(olcsóság, kapcsolat felépülésének sebessége)
+nagyon alkalmassá teszi a többi technológiával való együtt használásra.
+
+\subsection{RFID vs. NFC}
+Az RFID (Radio Frequency IDentification) tulajdonképpen az NFC előfutára, ebből
+fejlődött ki. Definíció szerint az RFID a rádióhullámos azonosításra használt technológia. Három frekvenciasávban működik: 
+
+\subsection{Bluetooth vs. NFC}
+
+\section{Összefoglalás}
 
 \end{document}
