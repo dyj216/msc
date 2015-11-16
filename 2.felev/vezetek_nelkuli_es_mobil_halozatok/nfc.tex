@@ -41,31 +41,39 @@ függ még a forrás által sugárzott domináns hullámhossztól is.
 Ha megvizsgáljuk a Hertz-dipólusra, mint elemi antennára felírható egyenleteket,
 akkor sok hasznos tanulságot levonhatunk a közel- és távoltér különbségéről.
 
-A gömbkoordináta rendszerben kifejezett $\mathbf{E}$ és $\mathbf{H}$ térerősségek:
+A gömbkoordináta rendszerben kifejezett $\mathbf{E}$ és $\mathbf{H}$ térerősségek
+\cite[177.~oldal]{elektromagnesesterek}:
 
 \begin{equation}
-H_{\phi} = j \frac{I \delta l}{4 \pi}
-\left( \frac{k}{r} - \frac{i}{r^2} \right)
-e^{-jkr} \sin \theta
+H_{\phi} =  \frac{I_0 l}{4 \pi}
+\left( \frac{j\beta}{r} + \frac{1}{r^2} \right)
+e^{-j\beta r} \sin \theta
 \end{equation}
 
 \begin{equation}
-E_{\theta} = j \frac{Z_0 I \delta l}{4 \pi}
-\left( \frac{k}{r} - \frac{i}{r^2} -\frac{1}{kr^3}\right)
-e^{-jkr} \sin \theta
+E_{\theta} = \frac{I_0 l}{4 \pi}
+\left( \frac{j\omega \mu_0}{r}
++ \sqrt{\frac{\mu_0}{\varepsilon_0}}\frac{1}{r^2}
+- \frac{j}{\omega \varepsilon_0 r^3} \right)
+e^{-j\beta r} \sin \theta
 \end{equation}
 
 \begin{equation}
-E_{r} = j \frac{Z_0 I \delta l}{2 \pi}
-\left( \frac{k}{r} - \frac{i}{kr^3}\right)
-e^{-jkr} \cos \theta
+E_{r} = \frac{I_0 l}{4 \pi}
+\left( \sqrt{\frac{\mu_0}{\varepsilon_0}} \frac{2}{r^2}
+- \frac{2j}{\omega \varepsilon_0 r^3}\right)
+e^{-j\beta r} \cos \theta
 \end{equation}
 ahol a 
 \begin{itemize}
-\item $Z_0 = \sqrt{{\mu_0}/{\epsilon_0}}$ a hullámimpedancia,
+\item $\beta = \omega /c = \omega \sqrt{\varepsilon_0 \mu_0}$ a hullámimpedancia,
+\item $\omega$ a körfrekvencia,
+\item $c$ a fény sebessége,
+\item $\varepsilon_0$ a vákuum permittivitása,
+\item $\mu_0$ a vákuum permeabilitása,
 \item $r, \theta$ és  $\phi$ a gömbkoordináta rendszer paraméterei,
 \item $I$ az áramerősség,
-\item $\delta l$ az antenna infinitezimálisan kicsi hossza
+\item $l$ az antenna hossza.
 \end{itemize} 
 
 A távoltérben az ${1}/{r^2}$-tel és ${1}/{r^3}$-bel arányos tagok
@@ -254,7 +262,9 @@ Ezzel az eszköz képes érzékelni, hogy a megkapott adat sérült-e.
 A továbbiakban különböző lehetséges NFC támadásokat fogok vizsgálni. A legtöbb
 ilyen támadásra létezik védekezési megoldás, amellyel csökkenteni, vagy akár 
 meg is lehet szüntetni a veszélyforrást. A következőkben nagyban támaszkodok
-Haselsteiner és Breitfuss: \emph{Security in Near Field Communication} művére. 
+Haselsteiner és Breitfuss: \emph{Security in Near Field Communication}
+\cite{nemetbiztonsagnfc} művére.
+
 
 \subsubsection{Lehallgatás}
 Az NFC, mint minden rádióhullámokat használó technológia, nem véd a lehallgatás
@@ -311,10 +321,127 @@ nagyon alkalmassá teszi a többi technológiával való együtt használásra.
 
 \subsection{RFID vs. NFC}
 Az RFID (Radio Frequency IDentification) tulajdonképpen az NFC előfutára, ebből
-fejlődött ki. Definíció szerint az RFID a rádióhullámos azonosításra használt technológia. Három frekvenciasávban működik: 
+fejlődött ki. Definíció szerint az RFID a rádióhullámos azonosításra használt technológia.
+
+\subsubsection{Működési frekvencia}
+Az RFID három különböző frekvenciaszinten képes működni, attól függően, hogy milyen 
+távolságból való leolvasást szeretnénk használni:
+\begin{itemize}
+\item Alacsony frekvencia: 125-134 kHz, max. 10 cm távolságig,
+\item Magas frekvencia: 13,56 MHz, max. 30 cm távolságig,
+\item Ultra magas frekvencia: 856--960 MHz, akár 100 m távolságig.
+\end{itemize}
+
+Ezzel szemben az NFC csak a 13,56 Mhz-en működik, ugyanazon, mint a magas frekvenciás RFID.
+Ez is mutatja a szoros kapcsolatukat és az NFC ilyen RFID tagekkel való kompatibilitását.
+
+\subsubsection{Működési mód}
+Ahogyan az NFC eszközök, úgy az RFID eszközök is lehetnek aktívak vagy passzívak, de 
+az utóbbi esetén ez jelentősen megváltoztatja leolvasás távolságát: az aktív RFID
+eszközök (ezek amelyek belső energiaforrással rendelkeznek) teszik lehetővé 
+az akár 100 méteres távolságból történő leolvasást. Ezt tárgyak lokalizációra 
+használják nagy raktárakban. Passzív módban, amikor nem rendelkezik saját
+energiaforrással az eszköz, akkor csak 25 méter lehet a leolvasás maximum távolsága.
+Ilyenkor az NFC-hez hasonlóan a leolvasó nyújtja az energiát.
+
+\subsubsection{Felhasználási területek}
+\begin{itemize}
+\item
+Az RFID jellemző felhasználási területei:
+\begin{itemize}
+\item Eszköznyilvántartás
+\item Verseny időmérése
+\item Raktárkészlet menedzsment
+\item Eszköz követés
+\item Hozzáférés-szabályozás
+\item Belépőkapuk.
+\end{itemize}
+
+\item
+Az NFC felhasználási területei:
+\begin{itemize}
+\item Információmegosztás mobil eszközök között
+\item Érintésmentes fizetés (kártyával vagy mobiltelefonnal)
+\item Okos poszterek: NFC képes mobiltelefonnal exkluzív tartalom elérése.
+\end{itemize}
+\end{itemize}
 
 \subsection{Bluetooth vs. NFC}
+Alapvetően az NFC rövidebb kapcsolatra lett kialakítva, amikor a két eszköz közel 
+található egymáshoz. Nincs szükség külön párosításra. A Bluetooth-nak szüksége 
+van párosításra, de stabilabb és hosszabb időtartamon keresztül fenntartandó
+kapcsolatok kiépítésére szolgál.
+
+Az NFC és a Bluetooth egymásnak nem versenytársai, hanem kiegészítő technológiái.
+
+Egy Bluetooth eszköz mindenképpen igényel külső energiaforrást. Az NFC-nél láttuk, 
+hogy nem ez a helyzet.
+
+A kapcsolat felépülését tekintve az NFC sokkal gyorsabb a Bluetooth-nál: nem igényel
+többet csak a két eszköz összeérintését, míg a Bluetooth-nál szükség van kód
+cserére, ami az NFC azonnali kapcsolatkiépítésével szemben hosszú másodpercekbe
+telik. Átviteli sebességnél azonban jóval magasabb sebességet lehet elérni
+Bluetooth-tal. Amíg az NFC csak néhány száz kbit/s-os sebességre képes, addig
+a Bluetooth-tal néhány Mb/s-ot is el lehet érni. A Bluetooth a 2,4 GHz-es 
+frekvenciasávban működik, ez által akár 100 méteres hatótávolsággal is 
+rendelkezhet.
+
+Ezek a különbségek okozzák a teljesen más felhasználási módokat is. Az NFC-vel 
+szemben a Bluetooth adatátvitelre, perifériák működtetésére, vezeték nélküli 
+hálózatok kiépítésére használható.
 
 \section{Összefoglalás}
+Láthattuk, hogy az NFC nem egy teljesen újszerű technológia, hanem már létezőek jó
+tulajdonságait felhasználva kialakított vezeték nélküli kommunikációs mód.
+Nagy népszerűségét olcsóságának köszönheti és annak, hogy a szolgáltatók 
+rájöttek, hogy mennyire könnyen kapcsolhatnak ehhez a technológiához olyan
+szolgáltatásokat, amellyel könnyen lehet pénzt keresni, elég csak a mobilos
+fizetésre gondolni, amely nem olyan régen indult el Magyarországon is.
+Nagy az iparágat befolyásoló világvállalatok is látnak benne jövőt (Apple, Google),
+így várhatóan az elterjedtsége az elkövetkezendő években folyamatosan növekedni fog.
+
+\begin{thebibliography}{9}
+
+\bibitem{elektromagnesesterek}
+    Dr. Zombory László,
+    \emph{Elektromágneses terek},
+    Műszaki kiadó, Budapest,
+    2008.
+  
+\bibitem{biztonsagnfc}
+    Solt Benedek Pál,
+    \emph{Biztonság a Near Field Communication szabványaiban},
+    2010.11, 
+    http://www.hit.bme.hu/~buttyan/courses/BMEVIHIM219/2010/HF-reports/SoltBenedek.pdf
+    
+\bibitem{nemetbiztonsagnfc}
+    Ernst Haselsteiner, Klemens Breitfuss,
+    \emph{Security in Near Field Communication (NFC)},
+    2006. július,
+    
+    http://events.iaik.tugraz.at/RFIDSec06/Program/papers/002\%20-\%20Security\%20in\%20NFC.pdf
+    
+\bibitem{nfc1}
+    ISO 2004, ISO/IEC  18092-4., 
+    \emph{Near Field Communication Interface and Protocol (NFCIP-1)}
+
+\bibitem{nfc2}
+    ISO 2005, ISO/IEC  21481.,
+    \emph{Near Field Communication Interface and Protocol-2 (NFCIP-2)}
+    
+\bibitem{rfid}
+    James Thrasher,
+    \emph{RFID vs. NFC},
+    2013. 10. 11.
+    
+    http://blog.atlasrfidstore.com/rfid-vs-nfc
+    
+\bibitem{bluetooth}
+    Mrinal Saha,
+    \emph{What is the Difference Between NFC and Bluetooth?}
+    
+    2015. 07. 07., http://hubpages.com/technology/nfc-vs-bluetooth
+
+\end{thebibliography}
 
 \end{document}
