@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{hyphenat}
+\usepackage{graphicx}
 \usepackage[a4paper]{geometry}
 \usepackage[magyar]{babel}
 \author{Endreffy Zsolt}
@@ -24,11 +25,17 @@
 
 \section{Bevezetés}
 Napjainkban egyre többször lehet találkozni a legkülönfélébb alkalmazási 
-területeken a \emph{Field Communicationnel}, avagy az \emph{NFC}-vel.
+területeken a \emph{Near Field Communication}-nel, avagy az \emph{NFC}-vel.
 Főként mobiltelefonokba beépítve nyer egyre nagyobb teret ez a technológia,
 hiszen itt tudják a szolgáltatók a technológiát (fizetős) szolgáltatásokkal
 összekötni.
+
 De mi is ez a technológia, és hogyan is működik?
+Ebben a munkában ezt a kérdést szeretném körbejárni, kezdve egy rövid 
+elméleti összefoglalóval, ezt folytatva a technikai paraméterek leírásával,
+szót ejtve az NFC biztonsági vonásairól. Végül két másik vezeték nélküli
+technológiával is összevetem, hogy könnyebb legyen elhelyezni ezt a 
+feltörekvő technológiát.
 
 \section{A közeltér-távoltér különbségéről}
 
@@ -84,18 +91,18 @@ távolsággal fordítottan arányos,
 míg a közeltérben még az ennél sokkal gyorsabban csökkenő, a távolság négyzetével illetve 
 harmadik hatványával fordítottan arányosan tagok dominálnak.
 Míg a távoltérben az elnyelődés nem hat vissza az adóra, addig a közeltérben a sugárzás
-elnyelődése megváltoztatja az adó terhelését. Ennek a jelenségnek egy egyszerű
-modellje a például transzformátorokban megfigyelhető mágneses indukció.
+elnyelődése megváltoztatja az adó terhelését. Ezt a jelenséget megfigyelhetjük
+például a transzformátorokban, ahol mágneses indukciónak nevezzük.
 
 Az elektromágneses mezőben az elektromos és mágneses mező a távoltér esetén kapcsolatban
 állnak és a kettejük intenzitásának arányát a hullámimpedancia adja meg. 
 Ezzel ellentétben a közeltérben a két mező egymástól függetlenül létezhet, és
 az egyik teljesen el tudja nyomni a másikat.
 
-Egy antennában a pozitív és negatív töltések nem hagyhatják el az antennát és a 
+Egy antennában a pozitív és negatív töltések nem hagyhatják el az antennát, és a 
 gerjesztő jel által elválasztva, annak megfelelően oszcilláló elektromos dipólust
 alkotnak, ami mind a közeltérben, mind a távoltérben hatást fejt ki. Az antennák
-többnyire arra lettek kitalálva, hogy nagy távolságú vezetéknélküli kommunikációt
+többnyire arra lettek kitalálva, hogy nagy távolságú vezeték nélküli kommunikációt
 lehessen velük folytatni, és ezeknek az antennáknak ez a régió a normális működési
 tartományuk. Természetesen a közeltér antennákat is egyre gyakrabban használjuk
 adatátvitelre, hiszen az \emph{NFC} is ennek a képviselője.
@@ -140,19 +147,19 @@ frekvenciájú sugárzást bocsájt ki, akkor nagyobb lesz a közeltér régiój
 rövidebb hullámhossznak köszönhető.
 
 \section[NFC]{NFC, avagy Near Field Communication}
-Az NFC technológia, mint ahogy a neve is mutatja a közeltér felhsználásával
+Az \emph{NFC} technológia, mint ahogy a neve is mutatja a közeltér felhsználásával
 megvalósított vezeték nélküli kommunikációs protokoll. Közvetlen elődjének az
-RFID (Radio Frequency Identification) tekinthető, de sokban eltér tőle. A 
+\emph{RFID} (\emph{Radio Frequency Identification}) tekinthető, de sokban eltér tőle. A 
 kettejük különbségeit és hasonlóságait egy későbbi fejezetben tárgyalom.
-Az NFC olyan vezeték nélküli technológia, amely kis sávszélesség mellett
+Az \emph{NFC} olyan vezeték nélküli technológia, amely kis sávszélesség mellett
 nagy frekvencián nyújt adatátvitelt, néhány centiméteres távolságban.
 
 \subsection{Specifikáció összefoglalás}
 \begin{itemize}
-\item Az NFC mágneses mező indukálásával kommunikál kettő hurokantenna között,
+\item Az \emph{NFC} mágneses mező indukálásával kommunikál kettő hurokantenna között,
 amelyek egymás közelterében  helyezkednek el, ezzel egy levegőmagos
 transzformátort hozva létre. A globálisan, engedély nélkül igénybe vehető 
-13,56 MHz-en működik akár 1,8 Mhz-es sávszélességgel.
+13,56 MHz-es frekvencián működik akár 1,8 Mhz-es sávszélességgel.
 \item A működési távolságának a maximuma 10 cm körül alakul, de jellemzően ennél
 kisebb távolságokon alkalmazzák.
 \item Támogatott átviteli adatsebességek: 106, 212 vagy 424 kbit/s.
@@ -168,18 +175,19 @@ Amennyiben adatra vár az egyik eszköz,
 annyiban kikapcsolja a saját mezejét. Ebben a működési módban mindkét eszköznek
 rendelkeznie kell saját energiaellátással.
 \end{itemize}
-\item Az NFC kétféle kódolást használ adattovábbításra. Ha egy aktív eszköz 
+\item Az \emph{NFC} kétféle kódolást használ adattovábbításra. Ha egy aktív eszköz 
 106 kbit/s melletti adattovábbítást végez, akkor 100\%-os moduláció mellett
 módosított Miller kódolást alkalmaz. Minden más esetben Manchester kódolást
 használ 10\%-os modulációs arány mellett.
-\item Az NFC-s eszközök képesek adatot egyszerre fogadni és továbbítani is. 
+\item Az \emph{NFC}-s eszközök képesek adatot egyszerre fogadni és továbbítani is. 
 \end{itemize}
 
 \subsection{Frekvenciasáv és sebesség}
-Az NFC a 13,56-os ISM (Industrial, Scientific and Medical: ipari, tudományos
+Az \emph{NFC} a 13,56-os \emph{ISM} (\emph{Industrial, Scientific and Medical}: 
+ipari, tudományos
 és orvosi) frekvenciát használja. A rádiófrekvenciás energia nagy része a 
 $\pm 7$ kHz-es engedélyezett sávban koncentrálódik, de a teljes spektrális 
-kiterjedés akár 1,8 Mhz is lehet ASK (Amplitudo Shift Keying)
+kiterjedés akár 1,8 Mhz is lehet \emph{ASK} (\emph{Amplitudo Shift Keying})
 moduláció használata esetén.
 
 A 106, 212 és 424 kbit/s-os sebessége alacsonynak tűnhet a mai egyéb
@@ -189,7 +197,7 @@ a tervezésnél. Ellenben nagyon kényelmesen és gyorsan képes a kapcsolat
 felépítésére.
 
 \subsection{Kommunikációs módok}
-Az NFC interfész aktív vagy passzív módban tud működni. Az aktív eszköz saját
+Az \emph{NFC} interfész aktív vagy passzív módban tud működni. Az aktív eszköz saját
 mezőt hoz létre, míg a passzív módban működő eszköznek az induktív csatolást
 kell felhasználnia az adattovábbításra. Tehát a passzív módban működő eszközöknek
 nem kell belső energiaforrással rendelkezniük, illetve az akkumulátorral működő
@@ -208,8 +216,9 @@ Passzív módnak azt nevezzük, amikor egy aktív eszköz és egy passzív eszk�
 jön létre a kapcsolat. Az aktív eszköz hozza létre a rádiófrekvenciás mezőt.
 
 \subsection{Szerepek}
-Kétféle szerepet lehet megkülönböztetni NFC kommunikáció során. Kezdeményezőnek 
-(initiator) nevezzük azt, amelyik az első üzenetet küldi, és célpontnak (target)
+Kétféle szerepet lehet megkülönböztetni \emph{NFC} kommunikáció során. Kezdeményezőnek 
+(\emph{initiatorn}) nevezzük azt, amelyik az első üzenetet küldi, és célpontnak 
+(\emph{target})
 a fogadó felet. Passzív eszköz nem kezdeményezhet adatcserét. A célpont addig 
 nem küldhet vissza választ, amíg a kezdeményező nem indítja el a kommunikációt.
 Egy kezdeményező több célponttal is felvehet kapcsolatot.
@@ -217,9 +226,9 @@ Egy kezdeményező több célponttal is felvehet kapcsolatot.
 \subsection{Összeütközés elkerülése}
 Általában ritkák a félreértések, hiszen az eszközöket közvetlen egymás mellé 
 szükséges helyezni. A protokoll egy egyszerű alapszabályt alkalmaz: ,,hallgatás
-közlés előtt'' (listen before talk). Ha a kezdeményező kommunikálni szeretne,
+közlés előtt'' (\emph{listen before talk}). Ha a kezdeményező kommunikálni szeretne,
 akkor biztosra kell mennie, hogy nincsen külső mező, amelyiket megzavarhat,
-vagy amelyik megzavarhatja az NFC kommunikációt. Egy meghatározott 
+vagy amelyik megzavarhatja az \emph{NFC} kommunikációt. Egy meghatározott 
 ideig csöndben kell várakoznia a kezdeményezés előtt, miután idegen mezőt 
 érzékelt. Ha kettő vagy több eszköz pontosan ugyanakkor válaszol, akkor a
 kezdeményező érzékeli az összeütközést.
@@ -242,24 +251,30 @@ Amennyiben egyes bit előzte meg, annyiban végig magas jelszint jelenti a null�
 bitet, amennyiben nulla előzte meg, annyiban egy olyan jelalak, amely az első
 félperiódusban veszi fel az alacsony jelszintet.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics{kodolas}
+	\caption{Módosított Miller (100\% ASK) és Manchester (10\% ASK) kódolások}		\label{fig:kodolas}
+\end{figure}
+
 \subsection{Biztonsági vonások}
-Először is fontos megjegyezni, hogy az alacsony működési távolság, amely az NFC-t
+Először is fontos megjegyezni, hogy az alacsony működési távolság, amely az \emph{NFC}-t
 jellemzi, annak ellenére nem biztosítja a biztonságos kommunikációt, hogy tudatos
 felhasználói interakciót igényel.
 
-Különböző lehetőségek állnak rendelkezésre az NFC technológia megtámadására.
-Egyrészről az eszközöket fizikailag is lehet manipulálni. Ez jelentheti az NFC
-tag (címke) eltávolítását, vagy fémfóliával bevonását, mellyel árnyékolni lehet
+Különböző lehetőségek állnak rendelkezésre az \emph{NFC} technológia megtámadására.
+Egyrészről az eszközöket fizikailag is lehet manipulálni. Ez jelentheti az \emph{NFC}
+\emph{tag} (címke) eltávolítását, vagy fémfóliával bevonását, mellyel árnyékolni lehet
 a rádióhullámokat.
 
 Amennyiben egy tagen érzékeny információk találhatóak, annyiban a taget meg kell
 védeni a  jogtalan olvasástól és írástól. Természetesen a csak olvasható tagek
 védettek a jogtalan írás ellen.
 
-A hibaérzékelésre az NFC a ciklikus redundancia vizsgálatot (CRC) használja.
+A hibaérzékelésre az \emph{NFC} a ciklikus redundancia vizsgálatot (CRC) használja.
 Ezzel az eszköz képes érzékelni, hogy a megkapott adat sérült-e. 
 
-A továbbiakban különböző lehetséges NFC támadásokat fogok vizsgálni. A legtöbb
+A továbbiakban különböző lehetséges \emph{NFC} támadásokat fogok vizsgálni. A legtöbb
 ilyen támadásra létezik védekezési megoldás, amellyel csökkenteni, vagy akár 
 meg is lehet szüntetni a veszélyforrást. A következőkben nagyban támaszkodok
 Haselsteiner és Breitfuss: \emph{Security in Near Field Communication}
@@ -267,7 +282,7 @@ Haselsteiner és Breitfuss: \emph{Security in Near Field Communication}
 
 
 \subsubsection{Lehallgatás}
-Az NFC, mint minden rádióhullámokat használó technológia, nem véd a lehallgatás
+Az \emph{NFC}, mint minden rádióhullámokat használó technológia, nem véd a lehallgatás
 ellen. A támadó a megfelelő antennával és tudással le tudja hallgatni a 
 vezetéknélküli kommunikációt. A legfőbb probléma a lehallgatás esetén az, 
 hogy közel kell lenni a kommunikáló eszközökhöz. Az, hogy mennyire közel kell
@@ -285,10 +300,25 @@ Megfelelő közelben a támadó képes lehet az átvitt adat törlésére, érth
 tételére. Ehhez szüksége van a moduláció és a kódolás ismeretére. Ezek ismeretében
 képes a vivőfrekvencián a megfelelő időben kiadott ellenkező fázisú kioltó jel
 kiadására. 
+
 Az adattörlés ellen aktív figyeléssel lehet védekezni, hiszen a jel elrontásához
 egy nagyságrenddel több energia szükséges.
 
 \subsubsection{Adatmódosítás}
+Adatmódosítás esetén nagyon másképp kell eljárni a különböző modulációk esetén.
+Amennyiben 100\%-os ASK-t használunk, annyiban amikor alacsony a jelszint, akkor
+kell sugározni, és amikor normálisan magas lenne a jelszint, akkor egy olyan 
+jelet kell kiadni, ami pontosan kioltja az eredeti jelet. Az előbbi könnyen 
+megvalósítható, az utóbbi gyakorlatilag lehetetlen. Ha megvizsgáljuk 
+\aref{fig:kodolas}-es ábrát, láthatjuk, hogy a kitöltéssel az 11-es bitpárt
+lehet 10-ra módosítani Miller kódolás esetén.
+
+10\%-os ASK esetén azonban minden bit megváltoztatható, hiszen a vevő csak a 
+jelek egymáshoz viszonyított relatív erősségét vizsgálja (természetesen egy
+engedélyezett amplitúdó intervallumon belül). Ekkor ha az alacsony jelszinthez 
+annyit adunk, hogy az arányok felcserélődjenek, akkor ellentétes bit vételét
+érhetjük el.
+
 Az adattörléshez hasonlóan itt is a csatorna ellenőrzésével lehet észrevenni,
 ha valaki megváltoztatja a jelarányokat.
 
